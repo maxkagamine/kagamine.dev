@@ -17,6 +17,21 @@ const theme = createMuiTheme({
     },
     background: {
       default: '#fff',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 500,
+      md: 820,
+      lg: 1000
+    }
+  },
+  overrides: {
+    MuiIconButton: {
+      root: {
+        color: 'inherit'
+      }
     }
   }
 });

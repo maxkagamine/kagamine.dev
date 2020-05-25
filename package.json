@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
+    "@material-ui/icons": "^4.9.1",
+    "clsx": "^1.1.0",
     "gatsby": "^2.21.37",
     "gatsby-material-ui-components": "^1.0.0",
     "gatsby-plugin-material-ui": "^2.1.8",

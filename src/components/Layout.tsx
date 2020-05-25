@@ -1,10 +1,8 @@
 import React from 'react';
 import { WindowLocation } from '@reach/router';
 import { Helmet } from 'react-helmet';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-
-declare var __PATH_PREFIX__: string;
+import Container from '@material-ui/core/Container';
+import Header from './Header';
 
 interface LayoutProps {
   location: WindowLocation;
@@ -12,20 +10,18 @@ interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
-  const { children } = props;
-  // const isHome = location.pathname == `${__PATH_PREFIX__}/`;
+  const { location, children } = props;
+  const isHome = location.pathname == `${__PATH_PREFIX__}/`;
 
   return (
     <div>
       <Helmet>
         <title>Max Kagamine</title> {/* TODO: Localize */}
       </Helmet>
-      <AppBar position='static'>
-        <Toolbar>
-          Stuff here
-        </Toolbar>
-      </AppBar>
-      {children}
+      <Header isHome={isHome} />
+      <Container maxWidth='md'>
+        {children}
+      </Container>
     </div>
   );
 }
