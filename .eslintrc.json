@@ -1,0 +1,14 @@
+{
+  "extends": "react-app",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/semi": "error",
+    "@typescript-eslint/quotes": ["warn", "single"],
+    "@typescript-eslint/indent": ["warn", 2, {
+      "SwitchCase": 1,
+      "flatTernaryExpressions": true
+    }],
+    "eqeqeq": "off",
+    "jsx-quotes": ["warn", "prefer-single"]
+  }
+}
