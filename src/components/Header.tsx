@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link } from 'gatsby';
+import { csslerp } from '../utils/csslerp';
 import nameEnImageUrl from '../images/name.en.png';
 import nameEn2xImageUrl from '../images/name.en@2x.png';
 import nameEn3xImageUrl from '../images/name.en@3x.png';
@@ -14,12 +15,6 @@ interface HeaderProps {
    * If true, the name will be a link back to the homepage.
    */
   isHome: boolean;
-}
-
-function linearScaleBreakpoints(x1: number, y1: number, x2: number, y2: number): string {
-  let slope = (y2 - y1) / (x2 - x1);
-  let intercept = y1 - (slope * x1);
-  return `clamp(${Math.min(y1, y2)}px, calc(${slope * 100}vw + ${intercept}px), ${Math.max(y1, y2)}px)`;
 }
 
 const HEIGHT = 200;
@@ -43,23 +38,23 @@ const useStyles = makeStyles(theme => createStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: linearScaleBreakpoints(
+    height: csslerp(
       theme.breakpoints.values.lg, HEIGHT,
       theme.breakpoints.values.sm, HEIGHT_MOBILE
     ),
     backgroundColor: theme.palette.primary.main
   },
   buttons: {
-    fontSize: linearScaleBreakpoints(
+    fontSize: csslerp(
       theme.breakpoints.values.md, ICON_SIZE,
       theme.breakpoints.values.sm, ICON_SIZE_MOBILE
     ),
-    margin: `0 ${linearScaleBreakpoints(
+    margin: `0 ${csslerp(
       theme.breakpoints.values.md, BUTTON_SPACING,
       theme.breakpoints.values.sm, BUTTON_SPACING_MOBILE
     )}`,
     '& a + a': {
-      marginLeft: linearScaleBreakpoints(
+      marginLeft: csslerp(
         theme.breakpoints.values.md, BUTTON_MARGIN,
         theme.breakpoints.values.sm, BUTTON_MARGIN_MOBILE
       )
@@ -87,7 +82,7 @@ const useStyles = makeStyles(theme => createStyles({
     }
   },
   nameEn: {
-    width: linearScaleBreakpoints(
+    width: csslerp(
       theme.breakpoints.values.lg, NAME_EN_WIDTH,
       theme.breakpoints.values.sm, NAME_EN_WIDTH_MOBILE
     )
