@@ -9,6 +9,8 @@ import nameEnImageUrl from '../images/name.en.png';
 import nameEn2xImageUrl from '../images/name.en@2x.png';
 import nameEn3xImageUrl from '../images/name.en@3x.png';
 import nameEn4xImageUrl from '../images/name.en@4x.png';
+import { USFlagIcon } from './FlagIcon/USFlagIcon';
+import { JapanFlagIcon } from './FlagIcon/JapanFlagIcon';
 
 interface HeaderProps {
   /**
@@ -58,13 +60,13 @@ const useStyles = makeStyles(theme => createStyles({
         theme.breakpoints.values.md, BUTTON_MARGIN,
         theme.breakpoints.values.sm, BUTTON_MARGIN_MOBILE
       )
+    },
+    '& a': {
+      fontSize: 'inherit',
+      padding: 0,
+      width: BUTTON_SIZE,
+      height: BUTTON_SIZE
     }
-  },
-  button: {
-    fontSize: 'inherit',
-    padding: 0,
-    width: BUTTON_SIZE,
-    height: BUTTON_SIZE,
   },
   twitter: {
     fontSize: '1.25em' // Match height of github icon visually
@@ -89,7 +91,7 @@ const useStyles = makeStyles(theme => createStyles({
   }
 }));
 
-export default function Header(props: HeaderProps) {
+export function Header(props: HeaderProps) {
   const { isHome } = props;
   const classes = useStyles(props);
 
@@ -115,7 +117,7 @@ export default function Header(props: HeaderProps) {
           target='_blank'
           rel='noopener noreferrer'
           edge='start'
-          className={classes.button}
+          aria-label='GitHub' /* TODO: Localize */
         >
           <GitHubIcon fontSize='inherit' />
         </IconButton>
@@ -124,7 +126,7 @@ export default function Header(props: HeaderProps) {
           target='_blank'
           rel='noopener noreferrer'
           edge='end'
-          className={classes.button}
+          aria-label='Twitter' /* TODO: Localize */
         >
           <TwitterIcon className={classes.twitter} />
         </IconButton>
@@ -135,12 +137,19 @@ export default function Header(props: HeaderProps) {
         )}
       </div>
       <div className={classes.buttons}>
-        {/* TODO: Flags */}
-        <IconButton href='#' edge='start' className={classes.button}>
-          <GitHubIcon fontSize='inherit' />
+        <IconButton
+          href='#'
+          edge='start'
+          aria-label='English' /* TODO: Localize */
+        >
+          <USFlagIcon fontSize='inherit' />
         </IconButton>
-        <IconButton href='#' edge='end' className={classes.button}>
-          <GitHubIcon fontSize='inherit' />
+        <IconButton
+          href='#'
+          edge='end'
+          aria-label='Japanese' /* TODO: Localize */
+        >
+          <JapanFlagIcon fontSize='inherit' />
         </IconButton>
       </div>
     </header>

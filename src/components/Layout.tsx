@@ -2,14 +2,14 @@ import React from 'react';
 import { WindowLocation } from '@reach/router';
 import { Helmet } from 'react-helmet';
 import Container from '@material-ui/core/Container';
-import Header from './Header';
+import { Header } from './Header';
 
 interface LayoutProps {
   location: WindowLocation;
   children: React.ReactNode;
 }
 
-export default function Layout(props: LayoutProps) {
+export function Layout(props: LayoutProps) {
   const { location, children } = props;
   const isHome = location.pathname == `${__PATH_PREFIX__}/`;
 
