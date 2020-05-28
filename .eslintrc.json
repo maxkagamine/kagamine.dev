@@ -9,6 +9,7 @@
       "flatTernaryExpressions": true
     }],
     "eqeqeq": "off",
-    "jsx-quotes": ["warn", "prefer-single"]
+    "jsx-quotes": ["warn", "prefer-single"],
+    "comma-dangle": "warn"
   }
 }

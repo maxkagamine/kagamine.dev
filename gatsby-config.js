@@ -10,5 +10,5 @@ module.exports = {
     'gatsby-plugin-material-ui-theme',
     'gatsby-plugin-material-ui',
     'gatsby-plugin-react-helmet'
-  ],
+  ]
 };

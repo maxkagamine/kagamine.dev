@@ -1,20 +1,20 @@
-import React from 'react';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link } from 'gatsby';
-import { csslerp } from '../utils/csslerp';
-import nameEnImageUrl from '../images/name.en.png';
-import nameEn2xImageUrl from '../images/name.en@2x.png';
-import nameEn3xImageUrl from '../images/name.en@3x.png';
-import nameEn4xImageUrl from '../images/name.en@4x.png';
-import { USFlagIcon } from './FlagIcon/USFlagIcon';
-import { JapanFlagIcon } from './FlagIcon/JapanFlagIcon';
+import React from 'react';
+import nameEnSrc from '../../images/name.en.png';
+import nameEn2xSrc from '../../images/name.en@2x.png';
+import nameEn3xSrc from '../../images/name.en@3x.png';
+import nameEn4xSrc from '../../images/name.en@4x.png';
+import { csslerp } from '../../utils/csslerp';
+import { JapanFlagIcon } from './JapanFlagIcon';
+import { USFlagIcon } from './USFlagIcon';
 
 interface HeaderProps {
   /**
-   * If true, the name will be a link back to the homepage.
+   * If false, the name will be a link back to the homepage.
    */
   isHome: boolean;
 }
@@ -96,14 +96,14 @@ export function Header(props: HeaderProps) {
   const classes = useStyles(props);
 
   // TODO: Localize
-  let nameImage = (
+  let nameImg = (
     <img
       srcSet={`
-        ${nameEnImageUrl},
-        ${nameEn2xImageUrl} 2x,
-        ${nameEn3xImageUrl} 3x,
-        ${nameEn4xImageUrl} 4x`}
-      src={nameEnImageUrl}
+        ${nameEnSrc},
+        ${nameEn2xSrc} 2x,
+        ${nameEn3xSrc} 3x,
+        ${nameEn4xSrc} 4x`}
+      src={nameEnSrc}
       alt='Max Kagamine'
       className={classes.nameEn}
     />
@@ -132,8 +132,8 @@ export function Header(props: HeaderProps) {
         </IconButton>
       </div>
       <div className={classes.nameContainer}>
-        {isHome ? nameImage : (
-          <Link to='/'>{nameImage}</Link>
+        {isHome ? nameImg : (
+          <Link to='/'>{nameImg}</Link>
         )}
       </div>
       <div className={classes.buttons}>

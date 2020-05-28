@@ -1,8 +1,8 @@
-import React from 'react';
-import { WindowLocation } from '@reach/router';
-import { Helmet } from 'react-helmet';
 import Container from '@material-ui/core/Container';
-import { Header } from './Header';
+import { WindowLocation } from '@reach/router';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Header } from '../Header';
 
 interface LayoutProps {
   location: WindowLocation;

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
 const KAGAMINE_YELLOW = '#fdd002';
 const KAGAMINE_BLUE = '#1282c3';
@@ -10,14 +10,14 @@ const KAGAMINE_BLUE = '#1282c3';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: KAGAMINE_YELLOW,
+      main: KAGAMINE_YELLOW
     },
     secondary: {
-      main: KAGAMINE_BLUE,
+      main: KAGAMINE_BLUE
     },
     background: {
-      default: '#fff',
-    },
+      default: '#fff'
+    }
   },
   breakpoints: {
     values: {
@@ -52,5 +52,5 @@ export default function Theme({ children }) {
 }
 
 Theme.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node
 };
