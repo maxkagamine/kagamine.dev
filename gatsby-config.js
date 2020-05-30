@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    // Build
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
@@ -7,7 +8,11 @@ module.exports = {
       }
     },
     'gatsby-plugin-typescript-checker',
-    'gatsby-plugin-material-ui-theme',
+
+    // App
+    'material-ui-theme',
+
+    // SSR
     'gatsby-plugin-material-ui',
     'gatsby-plugin-react-helmet'
   ]
