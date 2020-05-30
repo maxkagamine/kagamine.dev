@@ -8,6 +8,8 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@formatjs/intl-pluralrules": "^2.2.1",
+    "@formatjs/intl-relativetimeformat": "^5.2.1",
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
     "clsx": "^1.1.0",
@@ -17,7 +19,8 @@
     "gatsby-plugin-react-helmet": "^3.3.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.0.0"
+    "react-helmet": "^6.0.0",
+    "react-intl": "^4.6.3"
   },
   "devDependencies": {
     "@types/react-helmet": "^6.0.0",
