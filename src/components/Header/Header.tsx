@@ -3,11 +3,17 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link } from 'gatsby';
+import { IconButton as GatsbyIconButton } from 'gatsby-material-ui-components';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import nameEnSrc from '../../images/name.en.png';
 import nameEn2xSrc from '../../images/name.en@2x.png';
 import nameEn3xSrc from '../../images/name.en@3x.png';
 import nameEn4xSrc from '../../images/name.en@4x.png';
+import nameJaSrc from '../../images/name.ja.png';
+import nameJa2xSrc from '../../images/name.ja@2x.png';
+import nameJa3xSrc from '../../images/name.ja@3x.png';
+import nameJa4xSrc from '../../images/name.ja@4x.png';
 import { csslerp } from '../../utils/csslerp';
 import { JapanFlagIcon } from './JapanFlagIcon';
 import { USFlagIcon } from './USFlagIcon';
@@ -32,8 +38,8 @@ const BUTTON_MARGIN_MOBILE = BUTTON_SPACING_MOBILE - (BUTTON_SIZE - ICON_SIZE);
 
 const NAME_EN_WIDTH = 435;
 const NAME_EN_WIDTH_MOBILE = 170;
-// const NAME_JA_WIDTH = 335;
-// const NAME_JA_WIDTH_MOBILE = 112;
+const NAME_JA_WIDTH = 335;
+const NAME_JA_WIDTH_MOBILE = 112;
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
@@ -88,15 +94,21 @@ const useStyles = makeStyles(theme => createStyles({
       theme.breakpoints.values.lg, NAME_EN_WIDTH,
       theme.breakpoints.values.sm, NAME_EN_WIDTH_MOBILE
     )
+  },
+  nameJa: {
+    width: csslerp(
+      theme.breakpoints.values.lg, NAME_JA_WIDTH,
+      theme.breakpoints.values.sm, NAME_JA_WIDTH_MOBILE
+    )
   }
 }));
 
 export function Header(props: HeaderProps) {
   const { isHome } = props;
   const classes = useStyles(props);
+  const intl = useIntl();
 
-  // TODO: Localize
-  let nameImg = (
+  let nameImg = intl.locale == 'en' ? (
     <img
       srcSet={`
         ${nameEnSrc},
@@ -104,8 +116,19 @@ export function Header(props: HeaderProps) {
         ${nameEn3xSrc} 3x,
         ${nameEn4xSrc} 4x`}
       src={nameEnSrc}
-      alt='Max Kagamine'
+      alt={intl.formatMessage({ id: 'name' })}
       className={classes.nameEn}
+    />
+  ) : (
+    <img
+      srcSet={`
+        ${nameJaSrc},
+        ${nameJa2xSrc} 2x,
+        ${nameJa3xSrc} 3x,
+        ${nameJa4xSrc} 4x`}
+      src={nameJaSrc}
+      alt={intl.formatMessage({ id: 'name' })}
+      className={classes.nameJa}
     />
   );
 
@@ -117,7 +140,7 @@ export function Header(props: HeaderProps) {
           target='_blank'
           rel='noopener noreferrer'
           edge='start'
-          aria-label='GitHub' /* TODO: Localize */
+          aria-label={intl.formatMessage({ id: 'github' })}
         >
           <GitHubIcon fontSize='inherit' />
         </IconButton>
@@ -126,7 +149,7 @@ export function Header(props: HeaderProps) {
           target='_blank'
           rel='noopener noreferrer'
           edge='end'
-          aria-label='Twitter' /* TODO: Localize */
+          aria-label={intl.formatMessage({ id: 'twitter' })}
         >
           <TwitterIcon className={classes.twitter} />
         </IconButton>
@@ -137,20 +160,22 @@ export function Header(props: HeaderProps) {
         )}
       </div>
       <div className={classes.buttons}>
-        <IconButton
-          href='#'
+        <GatsbyIconButton
+          to='/en/'
           edge='start'
-          aria-label='English' /* TODO: Localize */
+          aria-label='English'
+          disabled={intl.locale == 'en'}
         >
           <USFlagIcon fontSize='inherit' />
-        </IconButton>
-        <IconButton
-          href='#'
+        </GatsbyIconButton>
+        <GatsbyIconButton
+          to='/ja/'
           edge='end'
-          aria-label='Japanese' /* TODO: Localize */
+          aria-label='日本語'
+          disabled={intl.locale == 'ja'}
         >
           <JapanFlagIcon fontSize='inherit' />
-        </IconButton>
+        </GatsbyIconButton>
       </div>
     </header>
   );
