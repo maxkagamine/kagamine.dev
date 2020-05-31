@@ -8,6 +8,7 @@ module.exports = {
       }
     },
     'gatsby-plugin-typescript-checker',
+
     // App
     'material-ui-theme',
     {
@@ -17,6 +18,8 @@ module.exports = {
         messages: `${__dirname}/src/messages`
       }
     },
+    'ascii-art',
+
     // SSR
     'gatsby-plugin-material-ui',
     'gatsby-plugin-react-helmet'
