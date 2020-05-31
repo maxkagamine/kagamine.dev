@@ -65,6 +65,9 @@ export const theme = createMuiTheme({
   props: {
     MuiCard: {
       variant: 'outlined'
+    },
+    MuiButton: {
+      disableElevation: true
     }
   }
 });

@@ -2,6 +2,7 @@ import { Card, CardActionArea, CardContent, Typography } from '@material-ui/core
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
 import React from 'react';
+import { ReadMoreButton } from './ReadMoreButton';
 
 interface BlogPostCardProps {
   // TODO
@@ -56,6 +57,7 @@ export function BlogPostCard(props: BlogPostCardProps) {
           <p>Blog post here</p>
           <h3>Header 3</h3>
           <p>Blog post here</p>
+          <ReadMoreButton />
         </CardContent>
       </CardActionArea>
     </Card>
