@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => createStyles({
   main: {
     margin: theme.spacing(6, 'auto'),
     [theme.breakpoints.only('sm')]: {
-      margin: theme.spacing(4, 'auto')
+      margin: theme.spacing(3, 'auto')
     },
     [theme.breakpoints.down('xs')]: {
       margin: theme.spacing(2, 'auto')

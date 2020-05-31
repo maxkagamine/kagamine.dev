@@ -61,6 +61,11 @@ export const theme = createMuiTheme({
         fontSize: pxToRem(11)
       }
     }
+  },
+  props: {
+    MuiCard: {
+      variant: 'outlined'
+    }
   }
 });
 

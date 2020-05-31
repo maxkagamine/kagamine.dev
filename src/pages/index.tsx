@@ -8,7 +8,9 @@ export default function Home({ location }: PageProps) {
   const intl = useIntl();
   return (
     <Layout location={location}>
-      <BlogPostCard></BlogPostCard>
+      {new Array(5).fill(
+        <BlogPostCard></BlogPostCard>
+      )}
     </Layout>
   );
 }
