@@ -1,6 +1,5 @@
-import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
+import { IconButton, IconButtonProps, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
 import clsx from 'clsx';
 import { GatsbyLinkProps, Link } from 'gatsby';
 import React from 'react';

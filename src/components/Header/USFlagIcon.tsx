@@ -1,4 +1,4 @@
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
+import { SvgIcon, SvgIconProps } from '@material-ui/core';
 import React from 'react';
 
 export function USFlagIcon(props: SvgIconProps) {
