@@ -6,12 +6,12 @@ export const wrapPageElement = ({ element, props }) => {
 
   let language = locale.split('-')[0];
 
-  if (!Intl.PluralRules) {
+  if (!Intl.PluralRules || (Intl.PluralRules.polyfilled && !Intl.PluralRules.localeData[language])) {
     require('@formatjs/intl-pluralrules/polyfill');
     require(`@formatjs/intl-pluralrules/dist/locale-data/${language}`);
   }
 
-  if (!Intl.RelativeTimeFormat) {
+  if (!Intl.RelativeTimeFormat || (Intl.RelativeTimeFormat.polyfilled && !Intl.RelativeTimeFormat.localeData[language])) {
     require('@formatjs/intl-relativetimeformat/polyfill');
     require(`@formatjs/intl-relativetimeformat/dist/locale-data/${language}`);
   }
