@@ -1,9 +1,7 @@
-import IconButton from '@material-ui/core/IconButton';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Link } from 'gatsby';
-import { IconButton as GatsbyIconButton } from 'gatsby-material-ui-components';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import nameEnSrc from '../../images/name.en.png';
@@ -15,6 +13,7 @@ import nameJa2xSrc from '../../images/name.ja@2x.png';
 import nameJa3xSrc from '../../images/name.ja@3x.png';
 import nameJa4xSrc from '../../images/name.ja@4x.png';
 import { csslerp } from '../../utils/csslerp';
+import { HeaderButton } from './HeaderButton';
 import { JapanFlagIcon } from './JapanFlagIcon';
 import { USFlagIcon } from './USFlagIcon';
 
@@ -60,8 +59,14 @@ const useStyles = makeStyles(theme => createStyles({
     margin: `0 ${csslerp(
       theme.breakpoints.values.md, BUTTON_SPACING,
       theme.breakpoints.values.sm, BUTTON_SPACING_MOBILE
-    )}`,
-    '& a + a': {
+    )}`
+  },
+  button: {
+    '&:first-child': {
+      marginLeft: -12 // edge='start', here in order to keep tooltip centered
+    },
+    '&:last-child': {
+      marginRight: -12, // edge='end', likewise
       marginLeft: csslerp(
         theme.breakpoints.values.md, BUTTON_MARGIN,
         theme.breakpoints.values.sm, BUTTON_MARGIN_MOBILE
@@ -135,24 +140,24 @@ export function Header(props: HeaderProps) {
   return (
     <header className={classes.root}>
       <div className={classes.buttons}>
-        <IconButton
+        <HeaderButton
           href='https://github.com/maxkagamine'
           target='_blank'
           rel='noopener noreferrer'
-          edge='start'
-          aria-label={intl.formatMessage({ id: 'github' })}
+          title={intl.formatMessage({ id: 'github' })}
+          className={classes.button}
         >
           <GitHubIcon fontSize='inherit' />
-        </IconButton>
-        <IconButton
+        </HeaderButton>
+        <HeaderButton
           href='https://twitter.com/maxkagamine'
           target='_blank'
           rel='noopener noreferrer'
-          edge='end'
-          aria-label={intl.formatMessage({ id: 'twitter' })}
+          title={intl.formatMessage({ id: 'twitter' })}
+          className={classes.button}
         >
           <TwitterIcon className={classes.twitter} />
-        </IconButton>
+        </HeaderButton>
       </div>
       <div className={classes.nameContainer}>
         {isHome ? nameImg : (
@@ -160,22 +165,22 @@ export function Header(props: HeaderProps) {
         )}
       </div>
       <div className={classes.buttons}>
-        <GatsbyIconButton
+        <HeaderButton
           to='/en/'
-          edge='start'
-          aria-label='English'
+          title='English'
           disabled={intl.locale == 'en'}
+          className={classes.button}
         >
           <USFlagIcon fontSize='inherit' />
-        </GatsbyIconButton>
-        <GatsbyIconButton
+        </HeaderButton>
+        <HeaderButton
           to='/ja/'
-          edge='end'
-          aria-label='日本語'
+          title='日本語'
           disabled={intl.locale == 'ja'}
+          className={classes.button}
         >
           <JapanFlagIcon fontSize='inherit' />
-        </GatsbyIconButton>
+        </HeaderButton>
       </div>
     </header>
   );

@@ -28,6 +28,12 @@ export const theme = createMuiTheme({
       root: {
         color: 'inherit'
       }
+    },
+    MuiTooltip: {
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        fontSize: '0.6875rem'
+      }
     }
   }
 });
