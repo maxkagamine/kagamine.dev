@@ -2,5 +2,8 @@
   "name": "Max Kagamine",
   "github": "GitHub",
   "twitter": "Twitter",
-  "readMore": "Read more"
+  "readMore": "Read more",
+  "notificationsButton": "Notify me",
+  "notificationsTooltip": "Get a browser notification for new posts (no spam!)",
+  "rssFeedTooltip": "Get updates via RSS"
 }

@@ -2,5 +2,8 @@
   "name": "鏡音最高",
   "github": "ギットハブ",
   "twitter": "ツイッター",
-  "readMore": "もっと読む"
+  "readMore": "もっと読む",
+  "notificationsButton": "フォロー",
+  "notificationsTooltip": "新しい投稿があったらブラウザ通知を受信する（スパム無し！）",
+  "rssFeedTooltip": "RSSでフォローする"
 }

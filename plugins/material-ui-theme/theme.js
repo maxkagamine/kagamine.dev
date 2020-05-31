@@ -50,9 +50,31 @@ export const theme = createMuiTheme({
     }
   },
   overrides: {
+    MuiButton: {
+      // Fix button icons not matching icon buttons
+      iconSizeSmall: {
+        marginRight: 4,
+        '& > *:first-child': {
+          fontSize: pxToRem(20)
+        }
+      },
+      iconSizeMedium: {
+        '& > *:first-child': {
+          fontSize: pxToRem(24)
+        }
+      },
+      iconSizeLarge: {
+        '& > *:first-child': {
+          fontSize: pxToRem(35)
+        }
+      }
+    },
     MuiIconButton: {
       root: {
         color: 'inherit'
+      },
+      sizeSmall: { // Fix small size not matching SvgIcon
+        fontSize: pxToRem(20)
       }
     },
     MuiTooltip: {
@@ -68,6 +90,9 @@ export const theme = createMuiTheme({
     },
     MuiButton: {
       disableElevation: true
+    },
+    MuiTooltip: {
+      placement: 'top'
     }
   }
 });

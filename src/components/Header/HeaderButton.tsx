@@ -20,7 +20,7 @@ export function HeaderButton(props: HeaderButtonProps) {
   const component: React.ElementType = 'to' in props ? Link : 'a';
 
   return (
-    <Tooltip title={title} placement='top'>
+    <Tooltip title={title}>
       <span className={clsx(className, { [classes.disabled]: props.disabled })}>
         <IconButton {...rest} component={component} aria-label={title} />
       </span>
