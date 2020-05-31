@@ -6,10 +6,11 @@
  * @param y1 The value at the first breakpoint.
  * @param x2 The second breakpoint.
  * @param y2 The value at the second breakpoint.
- * @see {@link https://caniuse.com/#feat=mdn-css_types_clamp Browser support for clamp()}
+ * @see {@link https://caniuse.com/#feat=mdn-css_types_min Browser support for min()/max()}
  */
 export function csslerp(x1: number, y1: number, x2: number, y2: number): string {
-  return `clamp(${Math.min(y1, y2)}px, ${csslerpUnclamped(x1, y1, x2, y2)}, ${Math.max(y1, y2)}px)`;
+  // TODO: Switch to clamp() once better supported
+  return `max(${Math.min(y1, y2)}px, min(${csslerpUnclamped(x1, y1, x2, y2)}, ${Math.max(y1, y2)}px))`;
 }
 
 /**
@@ -17,8 +18,8 @@ export function csslerp(x1: number, y1: number, x2: number, y2: number): string 
  * breakpoints (linear interpolation).
  *
  * Without clamping, the value will be extrapolated beyond the breakpoints. If
- * `clamp()` cannot be used, the range can alternatively be limited using media
- * queries or min/maxHeight(Width).
+ * `min()`/`max()` cannot be used, the range can alternatively be limited using
+ * media queries or min/maxHeight(Width).
  *
  * @param x1 The first breakpoint.
  * @param y1 The value at the first breakpoint.
