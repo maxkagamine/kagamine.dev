@@ -1,11 +1,30 @@
-import { Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
 import React from 'react';
+import { BlogPostTitle } from '../BlogPostTitle';
 import { ReadMoreButton } from './ReadMoreButton';
 
 interface BlogPostCardProps {
-  // TODO
+  /**
+   * The post slug.
+   */
+  slug: string;
+
+  /**
+   * The post title.
+   */
+  title: string;
+
+  /**
+   * The post date as an ISO 8601 string.
+   */
+  date: string;
+
+  /**
+   * The excerpt html.
+   */
+  excerpt: string;
 }
 
 const useStyles = makeStyles(theme => createStyles({
@@ -27,6 +46,7 @@ const useStyles = makeStyles(theme => createStyles({
   },
   content: {
     padding: theme.spacing(3),
+    pointerEvents: 'none',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2)
     },
@@ -38,25 +58,15 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function BlogPostCard(props: BlogPostCardProps) {
+  const { slug, title, date, excerpt } = props;
   const classes = useStyles(props);
 
   return (
     <Card component='article' className={classes.root}>
-      <CardActionArea component={Link} to='#' role='link'>
+      <CardActionArea component={Link} to={slug} role='link'>
         <CardContent className={classes.content}>
-          <header>
-            <Typography variant='h1'>
-              Blog title here
-            </Typography>
-            <Typography variant='subtitle1'>
-              1 year ago &middot; Updated 4 days ago
-            </Typography>
-          </header>
-          <p>Blog post here</p>
-          <h2>Header 2</h2>
-          <p>Blog post here</p>
-          <h3>Header 3</h3>
-          <p>Blog post here</p>
+          <BlogPostTitle title={title} date={date} />
+          <div dangerouslySetInnerHTML={{ __html: excerpt }} />
           <ReadMoreButton />
         </CardContent>
       </CardActionArea>

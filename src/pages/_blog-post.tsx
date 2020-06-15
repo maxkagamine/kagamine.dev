@@ -1,17 +1,17 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { graphql } from 'gatsby';
 import React from 'react';
-import { BlogPostTitle } from '../components/BlogPostTitle/BlogPostTitle';
+import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 interface BlogPostPageData {
   markdownRemark: {
-    html: string,
     frontmatter: {
       title: string,
       date: string
-    }
+    },
+    html: string,
     tableOfContents: string
   };
 }
@@ -19,11 +19,11 @@ interface BlogPostPageData {
 export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
       frontmatter {
         title
         date
       }
+      html
       tableOfContents
     }
   }
@@ -39,8 +39,10 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
 
   return (
     <Layout location={location} translations={translations}>
-      <BlogPostTitle title={title} date={date} />
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <article>
+        <BlogPostTitle title={title} date={date} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </article>
     </Layout>
   );
 }
