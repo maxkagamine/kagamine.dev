@@ -32,7 +32,8 @@ module.exports = {
       resolve: 'localized-blog',
       options: {
         locales: ['en', 'ja'],
-        messages: `${__dirname}/src/messages`
+        messages: `${__dirname}/src/messages`,
+        blogPostTemplate: `${__dirname}/src/pages/_blog-post.tsx`
       }
     },
 

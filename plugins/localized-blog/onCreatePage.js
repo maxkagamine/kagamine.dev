@@ -1,4 +1,4 @@
-const { parsedMessages } = require('./onPreInit');
+const createPageContext = require('./createPageContext');
 
 module.exports = async ({ page, actions }, pluginOptions) => {
   const { createPage, deletePage } = actions;
@@ -13,10 +13,7 @@ module.exports = async ({ page, actions }, pluginOptions) => {
     createPage({
       ...page,
       path: `/${locale}${page.path}`,
-      context: {
-        locale,
-        messages: parsedMessages.get(locale)
-      }
+      context: createPageContext(locale)
     });
   }
 };

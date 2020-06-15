@@ -26,5 +26,19 @@ module.exports = ({ node, getNode, actions }, pluginOptions) => {
       name: 'slug',
       value: `/${locale}${relativeSlug}/` // e.g. /en/foo/
     });
+
+    // Add locale so we don't need to parse it out when creating the page
+    createNodeField({
+      node,
+      name: 'locale',
+      value: locale
+    });
+
+    // Add dirname to be able to match up translations
+    createNodeField({
+      node,
+      name: 'dirname',
+      value: dirname
+    });
   }
 };
