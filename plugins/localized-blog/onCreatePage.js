@@ -7,13 +7,17 @@ module.exports = async ({ page, actions }, pluginOptions) => {
   // Remove automatically-generated page
   deletePage(page);
 
+  // Create map of locales to paths
+  let paths = Object.fromEntries(
+    locales.map(locale => [locale, `/${locale}${page.path}`]));
+
   // Create locale-specific pages
   for (let locale of locales) {
     // TODO: Handle 404 page
     createPage({
       ...page,
-      path: `/${locale}${page.path}`,
-      context: createPageContext(locale)
+      path: paths[locale],
+      context: createPageContext(locale, paths)
     });
   }
 };
