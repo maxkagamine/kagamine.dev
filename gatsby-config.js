@@ -27,9 +27,9 @@ module.exports = {
     // Client-side routing for <a> tags in markdown posts
     'gatsby-plugin-catch-links',
 
-    // Create localized versions of pages & set up react-intl
+    // Create localized pages & set up react-intl
     {
-      resolve: 'localized-pages',
+      resolve: 'localized-blog',
       options: {
         locales: ['en', 'ja'],
         messages: `${__dirname}/src/messages`
