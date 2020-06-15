@@ -16,11 +16,15 @@ module.exports = ({ node, getNode, actions }, pluginOptions) => {
       throw new Error(`Markdown file at ${dirname}/${locale}.md has a filename that doesn't match a site locale.`);
     }
 
+    // Allow overriding directory name for translated slugs
+    let relativeSlug = node.frontmatter.slug ?
+      `/${node.frontmatter.slug}` : dirname;
+
     // Create slug with locale in front
     createNodeField({
       node,
       name: 'slug',
-      value: `/${locale}${dirname}/` // e.g. /en/foo/
+      value: `/${locale}${relativeSlug}/` // e.g. /en/foo/
     });
   }
 };

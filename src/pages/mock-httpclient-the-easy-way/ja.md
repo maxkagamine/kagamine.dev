@@ -1,6 +1,7 @@
 ---
 title: MoqでHttpClientとIHttpClientFactoryをモックする簡単な方法
 date: 2018-12-02 17:59 -0400
+slug: httpclient-mock-kantan-na-houhou
 ---
 
 HttpClientを直にモックすることが難しいのは[よく知られています](https://github.com/dotnet/corefx/issues/1624)。これについてブログ投稿がもう多いですが解決法は一般にモックできられる何らかのラッパーを作るかHttpClientのために特別にテスティングライブラリを使うことですけど、前者はよく望ましくなくて、後者はHTTPリクエストだけのために別のモックシステムに切り替えることが必要で、あのシステムの方が柔軟ではないか他のモックと一緒に不味そうですかもしれない
