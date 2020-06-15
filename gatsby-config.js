@@ -1,16 +1,33 @@
 module.exports = {
   plugins: [
-    // Build
+    // Load files in pages directory
     {
-      resolve: 'gatsby-plugin-eslint',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        test: /\.[jt]sx?$/
+        name: 'pages',
+        path: `${__dirname}/src/pages`
       }
     },
-    'gatsby-plugin-typescript-checker',
 
-    // App
-    'material-ui-theme',
+    // Process markdown files
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        excerpt_separator: '<!-- end -->',
+        plugins: [
+          // Auto smart quotes, em dashes, and ellipses
+          'gatsby-remark-smartypants',
+
+          // Add target & rel to external links
+          'gatsby-remark-external-links'
+        ]
+      }
+    },
+
+    // Client-side routing for <a> tags in markdown posts
+    'gatsby-plugin-catch-links',
+
+    // Create localized versions of pages & set up react-intl
     {
       resolve: 'localized-pages',
       options: {
@@ -18,10 +35,28 @@ module.exports = {
         messages: `${__dirname}/src/messages`
       }
     },
-    'ascii-art',
 
-    // SSR
+    // Configure Material-UI
+    'material-ui-theme',
+
+    // Perform linting during webpack builds
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.[jt]sx?$/
+      }
+    },
+
+    // Perform type checking during webpack builds
+    'gatsby-plugin-typescript-checker',
+
+    // SSR for Material-UI's JSS styles
     'gatsby-plugin-material-ui',
-    'gatsby-plugin-react-helmet'
+
+    // SSR for helmet
+    'gatsby-plugin-react-helmet',
+
+    // Post-build shenanigans
+    'ascii-art'
   ]
 };

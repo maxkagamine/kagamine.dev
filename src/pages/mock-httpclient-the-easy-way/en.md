@@ -7,7 +7,7 @@ Mocking HttpClient directly is [notoriously difficult](https://github.com/dotnet
 
 Here I'll show how we can use Moq for HttpClient as well, and with the help of extension methods, do so without any excessive boilerplate.
 
-<!-- more -->
+<!-- end -->
 
 ## HttpClient with vanilla Moq
 

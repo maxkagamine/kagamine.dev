@@ -5,6 +5,8 @@ date: 2018-05-05 12:19 -0400
 
 `git clean` is for milk drinkers; delete your changes like a true Nord!
 
+<!-- end -->
+
 **(Turn sound on.)**
 
 <p class="video-embed">

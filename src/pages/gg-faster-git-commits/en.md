@@ -7,7 +7,7 @@ Perhaps the most frequent thing you'll do with git is stage all your changes and
 
 Wouldn't it be nice if there were a single command that commits everything all in one go, allows you to commit only staged files using the same command, and also supports specifying the message _as a bare string_, all with only two characters?
 
-Allow me to introduce my favorite bash function: `gg`! <!-- more --> GG stands for "good game", in reference to [D.Va's voice line](https://youtu.be/qewbLfCYEw0?t=22) from Overwatch (hence the banner image), and conveniently sits well alongside other common aliases such as `gd` (git diff), `gl` (git log), and just `g` for git itself.
+Allow me to introduce my favorite bash function: `gg`! <!-- end --> GG stands for "good game", in reference to [D.Va's voice line](https://youtu.be/qewbLfCYEw0?t=22) from Overwatch (hence the banner image), and conveniently sits well alongside other common aliases such as `gd` (git diff), `gl` (git log), and just `g` for git itself.
 
 ## What it does
 
