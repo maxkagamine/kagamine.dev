@@ -22,6 +22,11 @@ interface HeaderProps {
    * If false, the name will be a link back to the homepage.
    */
   isHome: boolean;
+
+  /**
+   * All available translations for this page as a map of locale to path.
+   */
+  translations: Record<string, string>;
 }
 
 const HEIGHT = 200;
@@ -109,7 +114,7 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function Header(props: HeaderProps) {
-  const { isHome } = props;
+  const { isHome, translations } = props;
   const classes = useStyles(props);
   const intl = useIntl();
 
@@ -161,12 +166,12 @@ export function Header(props: HeaderProps) {
       </div>
       <div className={classes.nameContainer}>
         {isHome ? nameImg : (
-          <Link to='/'>{nameImg}</Link>
+          <Link to={`/${intl.locale}/`}>{nameImg}</Link>
         )}
       </div>
       <div className={classes.buttons}>
         <HeaderButton
-          to='/en/'
+          to={translations.en ?? '/en/'}
           title='English'
           disabled={intl.locale == 'en'}
           className={classes.button}
@@ -174,7 +179,7 @@ export function Header(props: HeaderProps) {
           <USFlagIcon fontSize='inherit' />
         </HeaderButton>
         <HeaderButton
-          to='/ja/'
+          to={translations.ja ?? '/ja/'}
           title='日本語'
           disabled={intl.locale == 'ja'}
           className={classes.button}

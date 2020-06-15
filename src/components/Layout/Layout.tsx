@@ -1,13 +1,23 @@
 import { Container } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import { WindowLocation } from '@reach/router';
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
 import { Header } from '../Header';
 
 interface LayoutProps {
+  /**
+   * The location object.
+   */
   location: WindowLocation;
+
+  /**
+   * All available translations for this page as a map of locale to path.
+   */
+  translations: Record<string, string>;
+
   children: React.ReactNode;
 }
 
@@ -24,18 +34,33 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function Layout(props: LayoutProps) {
-  const { location, children } = props;
+  const { location, translations, children } = props;
+  const { site } = useStaticQuery(graphql`
+    query LayoutQuery {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `);
   const classes = useStyles(props);
+  const theme = useTheme();
   const intl = useIntl();
 
-  const isHome = /\/[^/]+\/?/.test(location.pathname);
+  const isHome = /^\/[^/]+\/?$/.test(location.pathname);
+  const toAbsolute = (path: string) => `${site.siteMetadata.siteUrl}${path}`;
 
   return (
     <>
       <Helmet htmlAttributes={{ lang: intl.locale }}>
         <title>{intl.formatMessage({ id: 'name' })}</title>
+        <meta name='theme-color' content={theme.palette.primary.main} />
+        <link rel='canonical' href={toAbsolute(translations[intl.locale])} />
+        {Object.entries(translations).map(([locale, path]) => path &&
+          <link rel='alternate' href={toAbsolute(path)} hrefLang={locale} key={locale} />)}
       </Helmet>
-      <Header isHome={isHome} />
+      <Header isHome={isHome} translations={translations} />
       <Container component='main' maxWidth='md' className={classes.main}>
         {children}
       </Container>

@@ -1,4 +1,7 @@
 module.exports = {
+  siteMetadata: {
+    siteUrl: 'https://kagamine.dev'
+  },
   plugins: [
     // Load files in pages directory
     {
@@ -51,11 +54,11 @@ module.exports = {
     // Perform type checking during webpack builds
     'gatsby-plugin-typescript-checker',
 
-    // SSR for Material-UI's JSS styles
-    'gatsby-plugin-material-ui',
-
     // SSR for helmet
     'gatsby-plugin-react-helmet',
+
+    // SSR for Material-UI's JSS styles
+    'gatsby-plugin-material-ui',
 
     // Post-build shenanigans
     'ascii-art'
