@@ -85,7 +85,7 @@ handler
 
 The library is available [on NuGet](https://www.nuget.org/packages/Moq.Contrib.HttpClient/). Please see the [readme on GitHub for more detailed usage and examples](https://github.com/maxkagamine/Moq.Contrib.HttpClient).
 
-## Behind the scenes: leveraging Moq's custom matchers
+### Behind the scenes: leveraging Moq's custom matchers
 
 Moq has several different Setup methods for various cases which, along with Verify, all take an expression to match an invocation (in this case a request). To avoid duplication, the request helpers all defer to a single set of custom matchers.
 
@@ -115,7 +115,7 @@ public static ISetup<HttpMessageHandler, Task<HttpResponseMessage>> SetupRequest
 
 All of these end up with a predictable form, so to avoid even this amount of duplication and possible discrepancies, the request helpers are generated using a [T4 template](https://docs.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates). <!--[Scripty](https://github.com/daveaglick/Scripty/), which uses Roslyn CSX scripts for code generation as an alternative to the old-school [T4 templates](https://docs.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates).-->
 
-## What about IHttpClientFactory?
+### What about IHttpClientFactory?
 
 If you've been reading articles on HttpClient, you may already know to not wrap the client in a `using`, as this [can lead to the application eating up sockets](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/). The standard advice is to reuse a single HttpClient, but this has the drawback of not responding to DNS changes. To alleviate this, ASP.NET Core introduces a new [IHttpClientFactory](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests) which, to quote the docs:
 

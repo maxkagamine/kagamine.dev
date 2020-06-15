@@ -26,27 +26,27 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontSize: 20,
+    fontSize: 19,
     pxToRem,
     h1: {
       fontSize: pxToRem(30),
       fontWeight: 700
     },
     h2: {
-      fontSize: pxToRem(25),
+      fontSize: pxToRem(26),
       fontWeight: 700
     },
     h3: {
-      fontSize: pxToRem(20),
+      fontSize: pxToRem(22),
       fontWeight: 700
     },
-    subtitle1: {
-      fontSize: pxToRem(14),
-      fontWeight: 400
-    },
     body2: {
-      fontSize: pxToRem(20),
-      lineHeight: 1.6
+      fontSize: pxToRem(19),
+      lineHeight: 1.7
+    },
+    subtitle1: {
+      fontSize: pxToRem(15),
+      fontWeight: 400
     }
   },
   overrides: {
@@ -97,19 +97,29 @@ export const theme = createMuiTheme({
   }
 });
 
-// Apply styles to html elements
+// Apply styles to html elements for markdown
 theme.overrides.MuiCssBaseline = {
   '@global': {
-    h1: {
-      ...theme.typography.h1
-    },
     h2: {
       ...theme.typography.h2,
-      margin: theme.spacing(2, 0)
+      margin: theme.spacing(6, 0, 3),
+
+      // Short underline
+      paddingBottom: theme.spacing(1) + 4 /* height */,
+      position: 'relative',
+      '&::after': {
+        content: '" "',
+        width: 30,
+        height: 4,
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        background: theme.palette.primary.main
+      }
     },
     h3: {
       ...theme.typography.h3,
-      margin: theme.spacing(2, 0)
+      margin: theme.spacing(6, 0, 3)
     },
     p: {
       margin: theme.spacing(2, 0)
