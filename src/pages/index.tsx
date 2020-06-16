@@ -1,5 +1,4 @@
 import { Button, Tooltip } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 import { graphql } from 'gatsby';
@@ -49,29 +48,15 @@ export const query = graphql`
   }
 `;
 
-const useStyles = makeStyles(theme => createStyles({
-  notificationsButton: {
-    lineHeight: theme.typography.pxToRem(23) // Fix alignment
-  },
-  notificationsTooltip: {
-    maxWidth: 'none'
-  }
-}));
-
 export default function HomePage({ data, location, pageContext: { translations } }: LocalizedPageProps<HomePageData>) {
-  const classes = useStyles();
   const intl = useIntl();
 
   return (
     <Layout location={location} translations={translations}>
       <PageButtons align='right' dense>
-        <Tooltip
-          title={intl.formatMessage({ id: 'notificationsTooltip' })}
-          classes={{ tooltip: classes.notificationsTooltip }}
-        >
+        <Tooltip title={intl.formatMessage({ id: 'notificationsTooltip' })}>
           <Button
             startIcon={<NotificationsNoneIcon />}
-            className={classes.notificationsButton}
           >
             {intl.formatMessage({ id: 'notificationsButton' })}
           </Button>

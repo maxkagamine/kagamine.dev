@@ -51,6 +51,9 @@ export const theme = createMuiTheme({
   },
   overrides: {
     MuiButton: {
+      root: { // Fix alignment
+        lineHeight: pxToRem(23)
+      },
       // Fix button icons not matching icon buttons
       iconSizeSmall: {
         marginRight: 4,
