@@ -46,7 +46,6 @@ const useStyles = makeStyles(theme => createStyles({
   },
   content: {
     padding: theme.spacing(3),
-    pointerEvents: 'none',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2)
     },
@@ -54,6 +53,9 @@ const useStyles = makeStyles(theme => createStyles({
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(4)
     }
+  },
+  excerpt: {
+    pointerEvents: 'none'
   }
 }));
 
@@ -66,7 +68,7 @@ export function BlogPostCard(props: BlogPostCardProps) {
       <CardActionArea component={Link} to={slug} role='link'>
         <CardContent className={classes.content}>
           <BlogPostTitle title={title} date={date} />
-          <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+          <div dangerouslySetInnerHTML={{ __html: excerpt }} className={classes.excerpt} />
           <ReadMoreButton />
         </CardContent>
       </CardActionArea>

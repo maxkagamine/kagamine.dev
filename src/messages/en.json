@@ -4,6 +4,7 @@
   "twitter": "Twitter",
   "readMore": "Read more",
   "notificationsButton": "Notify me",
-  "notificationsTooltip": "Get a browser notification for new posts (no spam!)",
-  "rssFeedTooltip": "Get updates via RSS"
+  "notificationsTooltip": "Get a browser notification when there's a new post",
+  "rssFeedTooltip": "Get updates via RSS",
+  "backToHomepage": "Back to homepage"
 }

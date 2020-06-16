@@ -5,5 +5,6 @@
   "readMore": "もっと読む",
   "notificationsButton": "フォロー",
   "notificationsTooltip": "新しい投稿があったらブラウザ通知を受信する（スパム無し！）",
-  "rssFeedTooltip": "RSSでフォローする"
+  "rssFeedTooltip": "RSSでフォローする",
+  "backToHomepage": "トップへ戻る"
 }
