@@ -126,6 +126,20 @@ theme.overrides.MuiCssBaseline = {
     },
     p: {
       margin: theme.spacing(2, 0)
+    },
+    'code:not(.grvsc-code)': {
+      // gatsby-remark-vscode's inline code support is currently a bit annoying
+      // and doesn't handle plain text; using a GitHub-like style instead
+      background: theme.palette.grey['200'],
+      padding: '0.2em 0.4em',
+      fontSize: '0.9em',
+      borderRadius: theme.shape.borderRadius
+    },
+    'pre.grvsc-container': {
+      borderRadius: theme.shape.borderRadius,
+      '&.one-dark-pro': {
+        background: '#23272e' // I use a slighly darker bg in my settings.json
+      }
     }
   }
 };
