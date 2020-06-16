@@ -34,11 +34,12 @@ const HEIGHT_MOBILE = 56; // Toolbar height
 
 const ICON_SIZE = 27;
 const ICON_SIZE_MOBILE = 20;
-const BUTTON_SIZE = ICON_SIZE * 1.9;
+const BUTTON_SIZE = 48;
+const BUTTON_SIZE_MOBILE = 40;
 const BUTTON_SPACING = ICON_SIZE * 2; // Visual spacing, includes padding
 const BUTTON_SPACING_MOBILE = ICON_SIZE / 2; // Drop to half icon-width gap on mobile
 const BUTTON_MARGIN = BUTTON_SPACING - (BUTTON_SIZE - ICON_SIZE); // Subtract padding to get actual margin between buttons
-const BUTTON_MARGIN_MOBILE = BUTTON_SPACING_MOBILE - (BUTTON_SIZE - ICON_SIZE);
+const BUTTON_MARGIN_MOBILE = BUTTON_SPACING_MOBILE - (BUTTON_SIZE_MOBILE - ICON_SIZE);
 
 const NAME_EN_WIDTH = 435;
 const NAME_EN_WIDTH_MOBILE = 170;
@@ -80,8 +81,14 @@ const useStyles = makeStyles(theme => createStyles({
     '& a': {
       fontSize: 'inherit',
       padding: 0,
-      width: BUTTON_SIZE,
-      height: BUTTON_SIZE
+      width: csslerp(
+        theme.breakpoints.values.md, BUTTON_SIZE,
+        theme.breakpoints.values.sm, BUTTON_SIZE_MOBILE
+      ),
+      height: csslerp(
+        theme.breakpoints.values.md, BUTTON_SIZE,
+        theme.breakpoints.values.sm, BUTTON_SIZE_MOBILE
+      )
     }
   },
   twitter: {
