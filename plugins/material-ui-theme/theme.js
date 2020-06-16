@@ -103,6 +103,12 @@ export const theme = createMuiTheme({
 // Apply styles to html elements for markdown
 theme.overrides.MuiCssBaseline = {
   '@global': {
+    a: {
+      color: theme.palette.secondary.main,
+      '&:not(:hover)': {
+        textDecoration: 'none'
+      }
+    },
     h2: {
       ...theme.typography.h2,
       margin: theme.spacing(6, 0, 3),
