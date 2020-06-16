@@ -66,4 +66,4 @@ The level up is accomplished using [this post-commit hook](https://github.com/ma
 
 [No lollygaggin'.](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLRvds-tlTLAC3z5ZuXw5ZB_p6oJc9rjpC)
 
-<p><video src="images/2018-05-05-skyrim-brodual-dance.mp4" autoplay loop muted playsinline /></p>
+<p><video src="brodual-dance.mp4" autoplay loop muted playsinline /></p>

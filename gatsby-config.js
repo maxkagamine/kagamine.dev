@@ -41,6 +41,14 @@ module.exports = {
                 shell: 'sh'
               }
             }
+          },
+
+          // Copy referenced files/media to public dir
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+            options: {
+              ignoreFileExtensions: [] // Remove if using gatsby-remark-images
+            }
           }
         ]
       }

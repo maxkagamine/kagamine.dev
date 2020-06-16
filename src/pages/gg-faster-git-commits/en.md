@@ -204,6 +204,6 @@ And that concludes my favorite bash function,
 
 **[GG.](https://www.youtube.com/watch?v=dMfnnt6NuBw&list=PLRvds-tlTLABjrv_Q93zvD65TFUbgqOk7)**
 
-<p><video src="images/2018-03-18-dva-highlight-intro.mp4" poster="images/2018-03-18-dva-highlight-intro.jpg" autoplay loop muted playsinline /></p>
+<p><video src="dva-highlight-intro.mp4" autoplay loop muted playsinline /></p>
 
 _Banner image rendered in SFM by [SedimentarySocks](https://www.reddit.com/r/Overwatch/comments/46m0jm/sfm_dva_fanart/)._
