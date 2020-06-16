@@ -65,28 +65,22 @@ export default function HomePage({ data, location, pageContext: { translations }
   return (
     <Layout location={location} translations={translations}>
       <PageButtons align='right' dense>
-        {size => <>
-          <Tooltip
-            title={intl.formatMessage({ id: 'notificationsTooltip' })}
-            classes={{ tooltip: classes.notificationsTooltip }}
+        <Tooltip
+          title={intl.formatMessage({ id: 'notificationsTooltip' })}
+          classes={{ tooltip: classes.notificationsTooltip }}
+        >
+          <Button
+            startIcon={<NotificationsNoneIcon />}
+            className={classes.notificationsButton}
           >
-            <Button
-              startIcon={<NotificationsNoneIcon />}
-              className={classes.notificationsButton}
-              size={size}
-            >
-              {intl.formatMessage({ id: 'notificationsButton' })}
-            </Button>
-          </Tooltip>
-          <Tooltip title={intl.formatMessage({ id: 'rssFeedTooltip' })}>
-            <AlignedIconButton
-              edge='end'
-              size={size}
-            >
-              <RssFeedIcon fontSize='inherit' />
-            </AlignedIconButton>
-          </Tooltip>
-        </>}
+            {intl.formatMessage({ id: 'notificationsButton' })}
+          </Button>
+        </Tooltip>
+        <Tooltip title={intl.formatMessage({ id: 'rssFeedTooltip' })}>
+          <AlignedIconButton edge='end'>
+            <RssFeedIcon fontSize='inherit' />
+          </AlignedIconButton>
+        </Tooltip>
       </PageButtons>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogPostCard

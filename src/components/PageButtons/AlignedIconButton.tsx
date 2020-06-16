@@ -1,5 +1,5 @@
 import { IconButton, IconButtonProps } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -12,6 +12,11 @@ const useStyles = makeStyles({
   },
   small: {
     height: 31
+  },
+  smallButton: {
+    padding: 10,
+    marginLeft: -5, // Regular buttons have 5px side padding
+    marginRight: -5
   }
 });
 
@@ -21,10 +26,13 @@ const useStyles = makeStyles({
  */
 export const AlignedIconButton = React.forwardRef<HTMLDivElement, IconButtonProps>((props, ref) => {
   const classes = useStyles(props);
+  const theme = useTheme();
+
+  let small = (props.size ?? theme.props?.MuiIconButton?.size) == 'small';
 
   return (
-    <div className={clsx(classes.root, { [classes.small]: props.size == 'small' })} ref={ref}>
-      <IconButton {...props} />
+    <div className={clsx(classes.root, { [classes.small]: small })} ref={ref}>
+      <IconButton {...props} className={clsx(props.className, { [classes.smallButton]: small })} />
     </div>
   );
 });

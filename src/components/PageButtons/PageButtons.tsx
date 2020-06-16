@@ -1,5 +1,5 @@
 import { Toolbar, useMediaQuery } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createMuiTheme, createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 
 interface PageButtonsProps {
@@ -7,7 +7,7 @@ interface PageButtonsProps {
 
   dense?: boolean;
 
-  children: (size: 'small' | 'medium') => React.ReactNode;
+  children: React.ReactNode;
 }
 
 const useStyles = makeStyles(theme => createStyles<string, PageButtonsProps>({
@@ -33,9 +33,29 @@ export function PageButtons(props: PageButtonsProps) {
   const classes = useStyles(props);
   const isMobile = useMediaQuery<Theme>(theme => theme.breakpoints.down('xs'));
 
-  return (
+  let toolbar = (
     <Toolbar className={classes.root} disableGutters>
-      {children(isMobile ? 'small' : 'medium')}
+      {children}
     </Toolbar>
   );
+
+  if (isMobile) {
+    // Material-UI lets us override components' default props using the theme,
+    // so we can automatically set nested buttons to size small on mobile
+    return (
+      <ThemeProvider
+        theme={theme => createMuiTheme({
+          ...theme,
+          props: {
+            MuiButton: { size: 'small' },
+            MuiIconButton: { size: 'small' }
+          }
+        })}
+      >
+        {toolbar}
+      </ThemeProvider>
+    );
+  }
+
+  return toolbar;
 }

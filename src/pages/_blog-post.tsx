@@ -45,16 +45,13 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
   return (
     <Layout location={location} translations={translations}>
       <PageButtons>
-        {size => <>
-          <Button
-            startIcon={<ArrowBackIcon />}
-            component={Link}
-            to={`/${intl.locale}/`}
-            size={size}
-          >
-            {intl.formatMessage({ id: 'backToHomepage' })}
-          </Button>
-        </>}
+        <Button
+          startIcon={<ArrowBackIcon />}
+          component={Link}
+          to={`/${intl.locale}/`}
+        >
+          {intl.formatMessage({ id: 'backToHomepage' })}
+        </Button>
       </PageButtons>
       <article>
         <BlogPostTitle title={title} date={date} />
