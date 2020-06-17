@@ -58,7 +58,7 @@ module.exports = {
             options: {
               providers: {
                 usePrefix: false,
-                include: ['YouTube'] // Whitelisting as some add js to page even if not used
+                include: ['YouTube', 'GIPHY'] // Whitelisting as some add js to page even if not used
               }
             }
           },

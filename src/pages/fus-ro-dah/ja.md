@@ -64,4 +64,4 @@ JSONプロパティ名になる必要がある。
 
 [昔はお前みたいな冒険者だった～](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLRvds-tlTLAC3z5ZuXw5ZB_p6oJc9rjpC)
 
-<p><video src="brodual-dance.mp4" autoplay loop muted playsinline /></p>
+https://giphy.com/gifs/dance-skyrim-brodual-TdFN7Cys1G8mOTuwfg
