@@ -9,25 +9,8 @@ import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageButtons } from '../components/PageButtons';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
-interface HomePageData {
-  allMarkdownRemark: {
-    edges: Array<{
-      node: {
-        fields: {
-          slug: string
-        },
-        frontmatter: {
-          title: string,
-          date: string
-        },
-        excerpt: string
-      }
-    }>
-  };
-}
-
 export const query = graphql`
-  query($locale: String!) {
+  query HomePage($locale: String!) {
     allMarkdownRemark(
       filter: { fields: { locale: { eq: $locale } } },
       sort: { fields: [frontmatter___date], order: [DESC] }
@@ -48,7 +31,7 @@ export const query = graphql`
   }
 `;
 
-export default function HomePage({ data, location, pageContext: { translations } }: LocalizedPageProps<HomePageData>) {
+export default function HomePage({ data, location, pageContext: { translations } }: LocalizedPageProps<GatsbyTypes.HomePageQuery>) {
   const intl = useIntl();
 
   return (
@@ -69,11 +52,11 @@ export default function HomePage({ data, location, pageContext: { translations }
       </PageButtons>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogPostCard
-          key={node.fields.slug}
-          slug={node.fields.slug}
-          title={node.frontmatter.title}
-          date={node.frontmatter.date}
-          excerpt={node.excerpt}
+          key={node.fields!.slug!}
+          slug={node.fields!.slug!}
+          title={node.frontmatter!.title!}
+          date={node.frontmatter!.date!}
+          excerpt={node.excerpt!}
         />
       ))}
     </Layout>

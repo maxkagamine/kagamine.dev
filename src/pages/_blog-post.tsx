@@ -9,19 +9,8 @@ import { Layout } from '../components/Layout';
 import { PageButtons } from '../components/PageButtons';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
-interface BlogPostPageData {
-  markdownRemark: {
-    frontmatter: {
-      title: string,
-      date: string
-    },
-    html: string,
-    tableOfContents: string
-  };
-}
-
 export const query = graphql`
-  query($slug: String!) {
+  query BlogPostPage($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
@@ -37,8 +26,9 @@ const useStyles = makeStyles(theme => createStyles({
 
 }));
 
-export default function BlogPostPage({ data, location, pageContext: { translations } }: LocalizedPageProps<BlogPostPageData>) {
-  const { html, frontmatter: { title, date }, tableOfContents } = data.markdownRemark;
+export default function BlogPostPage({ data, location, pageContext: { translations } }: LocalizedPageProps<GatsbyTypes.BlogPostPageQuery>) {
+  const { html, frontmatter, tableOfContents } = data.markdownRemark!;
+  const { title, date } = frontmatter!;
   const classes = useStyles();
   const intl = useIntl();
 
@@ -54,8 +44,8 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
         </Button>
       </PageButtons>
       <article>
-        <BlogPostTitle title={title} date={date} />
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <BlogPostTitle title={title!} date={date!} />
+        <div dangerouslySetInnerHTML={{ __html: html! }} />
       </article>
     </Layout>
   );

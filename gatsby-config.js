@@ -70,6 +70,20 @@ module.exports = {
     // Configure Material-UI
     'material-ui-theme',
 
+    // Generate types for graphql queries
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        // Syntax highlighting & intellisense via vscode Apollo GraphQL extension
+        emitSchema: {
+          'src/__generated__/gatsby-introspection.json': true
+        },
+        emitPluginDocuments: {
+          'src/__generated__/gatsby-plugin-documents.graphql': true
+        }
+      }
+    },
+
     // Perform linting during webpack builds
     {
       resolve: 'gatsby-plugin-eslint',

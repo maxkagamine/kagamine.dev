@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => createStyles({
 
 export function Layout(props: LayoutProps) {
   const { location, translations, children } = props;
-  const { site } = useStaticQuery(graphql`
-    query LayoutQuery {
+  const data = useStaticQuery<GatsbyTypes.LayoutQuery>(graphql`
+    query Layout {
       site {
         siteMetadata {
           siteUrl
@@ -49,7 +49,7 @@ export function Layout(props: LayoutProps) {
   const intl = useIntl();
 
   const isHome = /^\/[^/]+\/?$/.test(location.pathname);
-  const toAbsolute = (path: string) => `${site.siteMetadata.siteUrl}${path}`;
+  const toAbsolute = (path: string) => `${data.site!.siteMetadata!.siteUrl}${path}`;
 
   return (
     <>
