@@ -4,6 +4,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { PageButtons } from '../components/PageButtons';
@@ -46,6 +47,7 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
       <article>
         <BlogPostTitle title={title!} date={date!} />
         <div dangerouslySetInnerHTML={{ __html: html! }} />
+        <BlogPostAfterword />
       </article>
     </Layout>
   );

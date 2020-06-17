@@ -59,6 +59,7 @@ export function Layout(props: LayoutProps) {
         <link rel='canonical' href={toAbsolute(translations[intl.locale])} />
         {Object.entries(translations).map(([locale, path]) => path &&
           <link rel='alternate' href={toAbsolute(path)} hrefLang={locale} key={locale} />)}
+        <link rel='me' href='https://twitter.com/maxkagamine' />
       </Helmet>
       <Header isHome={isHome} translations={translations} />
       <Container component='main' maxWidth='md' className={classes.main}>

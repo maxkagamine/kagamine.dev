@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://kagamine.dev'
+    siteUrl: 'https://kagamine.dev',
+    repoUrl: 'https://github.com/maxkagamine/kagamine.dev'
   },
   plugins: [
     // Load files in pages directory
@@ -69,9 +70,6 @@ module.exports = {
       }
     },
 
-    // Client-side routing for <a> tags in markdown posts
-    'gatsby-plugin-catch-links',
-
     // Create localized pages & set up react-intl
     {
       resolve: 'localized-blog',
@@ -84,6 +82,12 @@ module.exports = {
 
     // Configure Material-UI
     'material-ui-theme',
+
+    // Client-side routing for <a> tags in markdown posts
+    'gatsby-plugin-catch-links',
+
+    // Load script for tweet buttons & twitter embeds
+    'gatsby-plugin-twitter',
 
     // Generate types for graphql queries
     {

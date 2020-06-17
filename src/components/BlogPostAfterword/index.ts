@@ -1,0 +1,1 @@
+export { BlogPostAfterword } from './BlogPostAfterword';
