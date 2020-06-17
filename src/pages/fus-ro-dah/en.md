@@ -9,9 +9,7 @@ date: 2018-05-05 12:19 -0400
 
 **(Turn sound on.)**
 
-<p class="video-embed">
-  <iframe src="https://www.youtube.com/embed/6uxOwzALvcc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</p>
+https://youtu.be/6uxOwzALvcc
 
 ## Let me guess... someone stole your sweetroll?
 

@@ -49,7 +49,22 @@ module.exports = {
             options: {
               ignoreFileExtensions: [] // Remove if using gatsby-remark-images
             }
-          }
+          },
+
+          // Embed YouTube videos, tweets, etc.
+          // NOTE: Using forked version of plugin due to necessary bug fixes
+          {
+            resolve: '@raae/gatsby-remark-oembed',
+            options: {
+              providers: {
+                usePrefix: false,
+                include: ['YouTube'] // Whitelisting as some add js to page even if not used
+              }
+            }
+          },
+
+          // Make YouTube embeds 100% width while maintaining aspect ratio
+          'gatsby-remark-responsive-iframe'
         ]
       }
     },

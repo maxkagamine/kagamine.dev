@@ -9,9 +9,7 @@ date: 2018-05-14 21:52 -0400
 
 **※音量を上げてください**
 
-<p class="video-embed">
-  <iframe src="https://www.youtube.com/embed/6uxOwzALvcc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</p>
+https://youtu.be/6uxOwzALvcc
 
 ## 当ててやろうか？　誰かにスイートロールを盗まれたかな？
 
