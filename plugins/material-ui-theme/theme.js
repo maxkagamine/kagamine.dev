@@ -133,6 +133,10 @@ theme.overrides.MuiCssBaseline = {
     p: {
       margin: theme.spacing(2, 0)
     },
+    img: {
+      maxWidth: '100%',
+      height: 'auto'
+    },
     'code:not(.grvsc-code)': {
       // gatsby-remark-vscode's inline code support is currently a bit annoying
       // and doesn't handle plain text; using a GitHub-like style instead
