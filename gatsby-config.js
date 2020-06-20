@@ -4,6 +4,10 @@ module.exports = {
     repoUrl: 'https://github.com/maxkagamine/kagamine.dev'
   },
   plugins: [
+    // Set up image preprocessing
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+
     // Load files in pages directory
     {
       resolve: 'gatsby-source-filesystem',
@@ -79,6 +83,9 @@ module.exports = {
         blogPostTemplate: `${__dirname}/src/pages/_blog-post.tsx`
       }
     },
+
+    // Add cover images to blog posts
+    'cover-images',
 
     // Configure Material-UI
     'material-ui-theme',
