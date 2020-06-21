@@ -5,8 +5,10 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
+import { Organization } from 'schema-dts';
 import profileSrc from '../../images/profile.png';
 import { Header } from '../Header';
+import { StructuredData } from '../StructuredData';
 
 interface LayoutProps {
   /**
@@ -54,11 +56,15 @@ export function Layout(props: LayoutProps) {
   const theme = useTheme();
   const intl = useIntl();
 
-  const toAbsolute = (path: string) => `${data.site!.siteMetadata!.siteUrl}${path}`;
+  const siteUrl = data.site!.siteMetadata!.siteUrl;
+  const toAbsolute = (path: string) => `${siteUrl}${path}`;
 
   const isHome = /^\/[^/]+\/?$/.test(location.pathname);
   const name = intl.formatMessage({ id: 'name' });
   const canonical = toAbsolute(translations[intl.locale]);
+
+  // Helmet does not dedupe json-ld
+  const hasStructuredData = React.Children.toArray(children).some((c: any) => c.type == StructuredData);
 
   return (
     <>
@@ -77,6 +83,14 @@ export function Layout(props: LayoutProps) {
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@maxkagamine' />
       </Helmet>
+      {!hasStructuredData && (
+        <StructuredData<Organization>
+          type='Organization'
+          name={name}
+          url={siteUrl}
+          logo={toAbsolute(profileSrc)}
+        />
+      )}
       <Header isHome={isHome} translations={translations} />
       <Container component='main' maxWidth='md' className={classes.main}>
         {children}

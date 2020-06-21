@@ -6,11 +6,14 @@ import Img from 'gatsby-image';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
+import { Article } from 'schema-dts';
 import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { PageButtons } from '../components/PageButtons';
+import { StructuredData } from '../components/StructuredData';
 import { TableOfContents } from '../components/TableOfContents';
+import profileSrc from '../images/profile.png';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 export const query = graphql`
@@ -88,6 +91,9 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
   const classes = useStyles();
   const intl = useIntl();
 
+  const siteUrl = data.site!.siteMetadata!.siteUrl;
+  const coverUrl = cover ? `${siteUrl}${data.markdownRemark!.cover!.childImageSharp!.fluid!.src}` : undefined;
+
   return (
     <Layout location={location} translations={translations} title={title!}>
       <Helmet>
@@ -98,9 +104,26 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
       {cover && (
         <Helmet>
           <meta name='twitter:card' content='summary_large_image' />
-          <meta property='og:image' content={`${data.site!.siteMetadata!.siteUrl}${data.markdownRemark!.cover!.childImageSharp!.fluid!.src}`} />
+          <meta property='og:image' content={coverUrl} />
         </Helmet>
       )}
+      <StructuredData<Article>
+        type='Article'
+        headline={title}
+        datePublished={date}
+        image={coverUrl}
+        inLanguage={intl.locale}
+        author={{
+          '@type': 'Person',
+          name: intl.formatMessage({ id: 'name' }),
+          image: `${siteUrl}${profileSrc}`,
+          url: siteUrl
+        }}
+        mainEntityOfPage={{
+          '@type': 'WebPage',
+          '@id': `${siteUrl}${translations[intl.locale]}`
+        }}
+      />
       <PageButtons>
         <Button
           startIcon={<ArrowBackIcon />}
