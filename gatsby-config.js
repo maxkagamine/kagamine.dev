@@ -6,7 +6,13 @@ module.exports = {
   plugins: [
     // Set up image preprocessing
     'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        useMozJpeg: true,
+        defaultQuality: 80
+      }
+    },
 
     // Load files in pages directory
     {

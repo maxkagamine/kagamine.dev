@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { BlogPostAfterword } from '../components/BlogPostAfterword';
@@ -19,16 +20,27 @@ export const query = graphql`
       }
       html
       tableOfContents
+      cover {
+        childImageSharp {
+          fluid(maxWidth: 772) { # md breakpoint minus gutters
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
     }
   }
 `;
 
 const useStyles = makeStyles(theme => createStyles({
-
+  cover: {
+    borderRadius: theme.shape.borderRadius,
+    overflow: 'hidden',
+    marginBottom: theme.spacing(2)
+  }
 }));
 
 export default function BlogPostPage({ data, location, pageContext: { translations } }: LocalizedPageProps<GatsbyTypes.BlogPostPageQuery>) {
-  const { html, frontmatter, tableOfContents } = data.markdownRemark!;
+  const { html, frontmatter, tableOfContents, cover } = data.markdownRemark!;
   const { title, date } = frontmatter!;
   const classes = useStyles();
   const intl = useIntl();
@@ -45,6 +57,13 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
         </Button>
       </PageButtons>
       <article>
+        {cover && (
+          <Img
+            fluid={cover.childImageSharp!.fluid}
+            className={classes.cover}
+            aria-hidden='true'
+          />
+        )}
         <BlogPostTitle title={title!} date={date!} />
         <div dangerouslySetInnerHTML={{ __html: html! }} />
         <BlogPostAfterword />
