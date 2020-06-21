@@ -36,6 +36,9 @@ module.exports = {
           // Add target & rel to external links
           'gatsby-remark-external-links',
 
+          // Add anchors to headers
+          'gatsby-remark-autolink-headers',
+
           // Syntax highlighting
           {
             resolve: 'gatsby-remark-vscode',

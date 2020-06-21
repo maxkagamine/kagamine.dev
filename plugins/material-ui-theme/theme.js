@@ -46,7 +46,13 @@ export const theme = createMuiTheme({
     },
     subtitle1: {
       fontSize: pxToRem(15),
-      fontWeight: 400
+      fontWeight: 400,
+      lineHeight: 1.2
+    },
+    overline: {
+      fontWeight: 700,
+      color: 'rgba(0, 0, 0, 0.65)',
+      letterSpacing: 0
     }
   },
   overrides: {

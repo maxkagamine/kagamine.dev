@@ -37,6 +37,7 @@
     "gatsby-plugin-twitter": "^2.3.4",
     "gatsby-plugin-typegen": "^2.2.0",
     "gatsby-plugin-typescript-checker": "^1.1.1",
+    "gatsby-remark-autolink-headers": "^2.3.5",
     "gatsby-remark-copy-linked-files": "^2.3.5",
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-remark-responsive-iframe": "^2.4.5",

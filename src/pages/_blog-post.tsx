@@ -10,6 +10,7 @@ import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { PageButtons } from '../components/PageButtons';
+import { TableOfContents } from '../components/TableOfContents';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 export const query = graphql`
@@ -42,6 +43,9 @@ const useStyles = makeStyles(theme => createStyles({
     borderRadius: theme.shape.borderRadius,
     overflow: 'hidden',
     marginBottom: theme.spacing(2)
+  },
+  fixedToc: {
+    margin: theme.spacing(2, 0)
   }
 }));
 
@@ -82,6 +86,9 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
           />
         )}
         <BlogPostTitle title={title!} date={date!} />
+        {tableOfContents && (
+          <TableOfContents html={tableOfContents} className={classes.fixedToc} />
+        )}
         <div dangerouslySetInnerHTML={{ __html: html! }} />
         <BlogPostAfterword />
       </article>

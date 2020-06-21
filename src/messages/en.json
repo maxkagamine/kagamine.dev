@@ -10,5 +10,6 @@
   "blogPostAfterwordTitle": "Thanks for reading",
   "blogPostAfterword1": "If you liked this post, please consider sharing it with a {tweet} and mention me ({me})! It helps to hear people are finding my stuff useful 🙂",
   "blogPostAfterword2": "Also, this entire site is open source on GitHub, so if you found a mistake or want to add something, you can <editLink>edit this page</editLink> or <issueLink>create an issue</issueLink> to let me know.",
-  "blogPostAfterword3": ""
+  "blogPostAfterword3": "",
+  "contents": "Contents"
 }

@@ -18,7 +18,7 @@ interface BlogPostTitleProps {
 
 const useStyles = makeStyles(theme => createStyles({
   subtitle: {
-    marginTop: theme.spacing(0.5)
+    marginTop: theme.spacing(1)
   }
 }));
 

@@ -10,5 +10,6 @@
   "blogPostAfterwordTitle": "読んでくれてありがとう",
   "blogPostAfterword1": "この投稿が気に入った場合、ぜひ{tweet}して{me}をつけることを検討してください。私が作ったものが誰かに役立たれると聞いたらいつも嬉しいです🙂",
   "blogPostAfterword2": "そしてこのサイトは全部GitHubでオープンソースなので、間違いを見つけた場合、それとも何か追加したい場合は<editLink>このページを編集</editLink>したり<issueLink>Issueを登録</issueLink>したりできます",
-  "blogPostAfterword3": "よろしくお願いします！"
+  "blogPostAfterword3": "よろしくお願いします！",
+  "contents": "コンテンツ"
 }
