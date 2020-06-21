@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, Theme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { graphql, Link } from 'gatsby';
@@ -38,6 +38,12 @@ export const query = graphql`
   }
 `;
 
+const STICKY_TOC_WIDTH = 250;
+const CONTAINER_SPACING = 3;
+const TOC_SPACING = 4;
+const tocBreakpoint = (theme: Theme) =>
+  `@media (min-width: ${theme.breakpoints.width('md') + ((theme.spacing(TOC_SPACING) + STICKY_TOC_WIDTH) * 2)}px)`;
+
 const useStyles = makeStyles(theme => createStyles({
   cover: {
     borderRadius: theme.shape.borderRadius,
@@ -45,7 +51,34 @@ const useStyles = makeStyles(theme => createStyles({
     marginBottom: theme.spacing(2)
   },
   fixedToc: {
-    margin: theme.spacing(2, 0)
+    margin: theme.spacing(2, 0),
+    [tocBreakpoint(theme)]: {
+      display: 'none'
+    }
+  },
+  articleWrapper: {
+    [tocBreakpoint(theme)]: {
+      display: 'grid',
+      gridTemplate: `'article toc' auto / ${theme.breakpoints.width('md') - theme.spacing(CONTAINER_SPACING * 2)}px ${STICKY_TOC_WIDTH}px`,
+      gridColumnGap: theme.spacing(TOC_SPACING),
+      marginRight: -(theme.spacing(TOC_SPACING) + STICKY_TOC_WIDTH)
+    }
+  },
+  article: {
+    gridArea: 'article'
+  },
+  stickyTocWrapper: {
+    gridArea: 'toc',
+    width: STICKY_TOC_WIDTH,
+    display: 'none',
+    [tocBreakpoint(theme)]: {
+      display: 'block'
+    }
+  },
+  stickyToc: {
+    position: 'sticky',
+    top: theme.spacing(CONTAINER_SPACING),
+    maxHeight: `calc(100vh - ${theme.spacing(CONTAINER_SPACING * 2)})`
   }
 }));
 
@@ -77,21 +110,28 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
           {intl.formatMessage({ id: 'backToHomepage' })}
         </Button>
       </PageButtons>
-      <article>
-        {cover && (
-          <Img
-            fluid={cover.childImageSharp!.fluid}
-            className={classes.cover}
-            aria-hidden='true'
-          />
-        )}
-        <BlogPostTitle title={title!} date={date!} />
-        {tableOfContents && (
-          <TableOfContents html={tableOfContents} className={classes.fixedToc} />
-        )}
-        <div dangerouslySetInnerHTML={{ __html: html! }} />
-        <BlogPostAfterword />
-      </article>
+      <div className={classes.articleWrapper}>
+        <div className={classes.stickyTocWrapper}>
+          {tableOfContents && (
+            <TableOfContents html={tableOfContents} className={classes.stickyToc} />
+          )}
+        </div>
+        <article className={classes.article}>
+          {cover && (
+            <Img
+              fluid={cover.childImageSharp!.fluid}
+              className={classes.cover}
+              aria-hidden='true'
+            />
+          )}
+          <BlogPostTitle title={title!} date={date!} />
+          {tableOfContents && (
+            <TableOfContents html={tableOfContents} className={classes.fixedToc} />
+          )}
+          <div dangerouslySetInnerHTML={{ __html: html! }} />
+          <BlogPostAfterword />
+        </article>
+      </div>
     </Layout>
   );
 }
