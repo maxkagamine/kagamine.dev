@@ -1,6 +1,6 @@
 ---
 title: MoqでHttpClientとIHttpClientFactoryをモックする簡単な方法
-date: 2018-12-02 17:59 -0400
+date: 2018-12-02T17:59-0400
 slug: httpclient-mock-kantan-na-houhou
 ---
 

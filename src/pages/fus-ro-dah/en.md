@@ -1,6 +1,6 @@
 ---
 title: 'Nuke a git repo with unrelenting force: the FUS RO DAH command'
-date: 2018-05-05 12:19 -0400
+date: 2018-05-05T12:19-0400
 ---
 
 `git clean` is for milk drinkers; delete your changes like a true Nord!

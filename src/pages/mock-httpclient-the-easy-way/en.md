@@ -1,6 +1,6 @@
 ---
 title: Mocking HttpClient & IHttpClientFactory with Moq (the easy way)
-date: 2018-12-01 13:17 -0400
+date: 2018-12-01T13:17-0400
 ---
 
 Mocking HttpClient directly is [notoriously difficult](https://github.com/dotnet/corefx/issues/1624). There are a number of blog posts about this already, but the solution has generally been to either create a wrapper of some form to mock instead or use an HttpClient-specific testing library. The former is typically undesirable, however, and the latter requires switching to a separate mocking system for HTTP calls which may be less flexible or awkward in conjunction with other mocks.

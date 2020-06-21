@@ -4,6 +4,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
 import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
@@ -28,6 +29,11 @@ export const query = graphql`
         }
       }
     }
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
   }
 `;
 
@@ -46,7 +52,18 @@ export default function BlogPostPage({ data, location, pageContext: { translatio
   const intl = useIntl();
 
   return (
-    <Layout location={location} translations={translations}>
+    <Layout location={location} translations={translations} title={title!}>
+      <Helmet>
+        <meta property='og:type' content='article' />
+        <meta property='article:author' content={intl.formatMessage({ id: 'name' })} />
+        <meta property='article:published_time' content={date} />
+      </Helmet>
+      {cover && (
+        <Helmet>
+          <meta name='twitter:card' content='summary_large_image' />
+          <meta property='og:image' content={`${data.site!.siteMetadata!.siteUrl}${data.markdownRemark!.cover!.childImageSharp!.fluid!.src}`} />
+        </Helmet>
+      )}
       <PageButtons>
         <Button
           startIcon={<ArrowBackIcon />}

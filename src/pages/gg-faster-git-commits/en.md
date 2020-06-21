@@ -1,6 +1,6 @@
 ---
 title: GG, a bash function for faster git committing
-date: 2018-03-18 20:07 -0400
+date: 2018-03-18T20:07-0400
 ---
 
 Perhaps the most frequent thing you'll do with git is stage all your changes and commit them, leading to a lot of `git add -A && git commit` (or `git commit -a` if there are no untracked files). You could alias this, but there are also times when you only want to commit specific files and wouldn't be able to use the same command. And typically commit messages are only a single line, so you can skip the editor and use `-m`, but then if you start your message with a single quote instead of a double and realize you need to say "they're", you have to do one of these awkward maneuvers: `they'\''re` (ending the quote, escpaing a single quote, and then returning to a quote all within the same argument).
