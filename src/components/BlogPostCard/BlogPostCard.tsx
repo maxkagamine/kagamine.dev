@@ -1,6 +1,7 @@
-import { Card, CardActionArea, CardContent } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
+import Img, { FluidObject } from 'gatsby-image';
 import React from 'react';
 import { BlogPostTitle } from '../BlogPostTitle';
 import { ReadMoreButton } from './ReadMoreButton';
@@ -25,6 +26,12 @@ interface BlogPostCardProps {
    * The excerpt html.
    */
   excerpt: string;
+
+  /**
+   * Optional cover image. Should use the same max width as blog post pages
+   * despite the border to avoid creating two images for the user to download.
+   */
+  cover?: FluidObject;
 }
 
 const useStyles = makeStyles(theme => createStyles({
@@ -60,12 +67,15 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function BlogPostCard(props: BlogPostCardProps) {
-  const { slug, title, date, excerpt } = props;
+  const { slug, title, date, excerpt, cover } = props;
   const classes = useStyles(props);
 
   return (
     <Card component='article' className={classes.root}>
       <CardActionArea component={Link} to={slug} role='link'>
+        {cover && (
+          <CardMedia component={Img} fluid={cover} aria-hidden='true' />
+        )}
         <CardContent className={classes.content}>
           <BlogPostTitle title={title} date={date} />
           <div dangerouslySetInnerHTML={{ __html: excerpt }} className={classes.excerpt} />

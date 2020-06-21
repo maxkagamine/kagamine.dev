@@ -24,6 +24,13 @@ export const query = graphql`
             title
             date
           }
+          cover {
+            childImageSharp {
+              fluid(maxWidth: 772) { # md breakpoint minus gutters
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
           excerpt(format: HTML)
         }
       }
@@ -57,6 +64,7 @@ export default function HomePage({ data, location, pageContext: { translations }
           title={node.frontmatter!.title!}
           date={node.frontmatter!.date!}
           excerpt={node.excerpt!}
+          cover={node.cover?.childImageSharp?.fluid}
         />
       ))}
     </Layout>
