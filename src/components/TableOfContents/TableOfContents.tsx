@@ -68,6 +68,18 @@ export function TableOfContents(props: TableOfContentsProps) {
   const classes = useStyles(props);
   const intl = useIntl();
 
+  function handleClick(event: React.MouseEvent<HTMLElement>) {
+    if (event.target instanceof HTMLAnchorElement) {
+      let hash = event.target.href.split('#')[1];
+      let el = document.getElementById(decodeURIComponent(hash));
+      if (el) {
+        event.preventDefault();
+        window.history.pushState({}, '', `#${hash}`);
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
   return (
     <nav {...rest} className={clsx(classes.root, className)}>
       <Typography variant='overline' component='div' className={classes.header}>
@@ -76,6 +88,7 @@ export function TableOfContents(props: TableOfContentsProps) {
       <ul
         className={classes.topLevel}
         dangerouslySetInnerHTML={{ __html: html.replace(/^<ul>|<\/ul>$/g, '') }}
+        onClick={handleClick}
       />
     </nav>
   );
