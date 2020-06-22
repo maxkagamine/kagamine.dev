@@ -17,12 +17,19 @@ module.exports = {
       }
     },
 
-    // Load files in pages directory
+    // Load files in pages & images directories
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
         path: `${__dirname}/src/pages`
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`
       }
     },
 

@@ -13,5 +13,7 @@
   "blogPostAfterword3": "",
   "contents": "Contents",
   "jobTitle": "Software Engineer",
-  "kagamineRin": "Kagamine Rin"
+  "kagamineRin": "Kagamine Rin",
+  "notFoundMessage": "Rin-chan couldn't find that page!",
+  "notFoundBackToHome": "Back to homepage?"
 }

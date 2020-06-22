@@ -54,6 +54,9 @@ exports.onPostBuild = async () => {
   });
 
   let promises = paths.map(async path => {
+    if ((await fs.stat(path)).isDirectory()) {
+      return;
+    }
     let content = await fs.readFile(path, { encoding: 'utf8' });
     content = content.replace('<!DOCTYPE html>', dt => `${dt}<!--${ART}-->`);
     await fs.writeFile(path, content);
