@@ -20,6 +20,7 @@ export const query = graphql`
         date
       }
       html
+      excerptPlain: excerpt(format: PLAIN)
       tableOfContents
       cover {
         childImageSharp {
@@ -82,7 +83,7 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export default function BlogPostPage({ data, location, pageContext: { alternateUrls } }: LocalizedPageProps<GatsbyTypes.BlogPostPageQuery>) {
-  const { html, frontmatter, tableOfContents, cover } = data.markdownRemark!;
+  const { html, excerptPlain, frontmatter, tableOfContents, cover } = data.markdownRemark!;
   const { title, date } = frontmatter!;
   const classes = useStyles();
   const intl = useIntl();
@@ -95,8 +96,8 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
         type: 'article',
         title,
         image: cover?.childImageSharp?.fluid?.src,
-        datePublished: date!
-        // TODO: description
+        datePublished: date!,
+        description: excerptPlain
       }}
     >
       <PageButtons>
