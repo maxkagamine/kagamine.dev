@@ -166,6 +166,15 @@ theme.overrides.MuiCssBaseline = {
       '&.one-dark-pro': {
         background: '#23272e' // I use a slighly darker bg in my settings.json
       }
+    },
+    blockquote: {
+      margin: theme.spacing(2, 0),
+      borderLeft: `4px solid ${theme.palette.grey['400']}`,
+      background: theme.palette.grey['50'],
+      padding: theme.spacing(0, 3),
+      overflow: 'hidden', // Keep children's margins inside
+      fontStyle: 'italic',
+      borderRadius: theme.shape.borderRadius
     }
   }
 };
