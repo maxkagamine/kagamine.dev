@@ -38,11 +38,11 @@ export const query = graphql`
   }
 `;
 
-export default function HomePage({ data, location, pageContext: { translations } }: LocalizedPageProps<GatsbyTypes.HomePageQuery>) {
+export default function HomePage({ data, location, pageContext: { alternateUrls } }: LocalizedPageProps<GatsbyTypes.HomePageQuery>) {
   const intl = useIntl();
 
   return (
-    <Layout location={location} translations={translations}>
+    <Layout location={location} alternateUrls={alternateUrls}>
       <PageButtons align='right' dense>
         <Tooltip title={intl.formatMessage({ id: 'notificationsTooltip' })}>
           <Button

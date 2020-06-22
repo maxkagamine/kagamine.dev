@@ -19,14 +19,15 @@ import { USFlagIcon } from './USFlagIcon';
 
 interface HeaderProps {
   /**
-   * If false, the name will be a link back to the homepage.
+   * Whether this is the homepage.
    */
   isHome: boolean;
 
   /**
-   * All available translations for this page as a map of locale to path.
+   * All available translations for the page as a map of locale to site-relative
+   * url, including the current locale.
    */
-  translations: Record<string, string>;
+  alternateUrls: Record<string, string>;
 }
 
 const HEIGHT = 200;
@@ -121,7 +122,7 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function Header(props: HeaderProps) {
-  const { isHome, translations } = props;
+  const { isHome, alternateUrls } = props;
   const classes = useStyles(props);
   const intl = useIntl();
 
@@ -178,7 +179,7 @@ export function Header(props: HeaderProps) {
       </div>
       <div className={classes.buttons}>
         <HeaderButton
-          to={translations.en ?? '/en/'}
+          to={alternateUrls.en ?? '/en/'}
           title='English'
           disabled={intl.locale == 'en'}
           className={classes.button}
@@ -186,7 +187,7 @@ export function Header(props: HeaderProps) {
           <USFlagIcon fontSize='inherit' />
         </HeaderButton>
         <HeaderButton
-          to={translations.ja ?? '/ja/'}
+          to={alternateUrls.ja ?? '/ja/'}
           title='日本語'
           disabled={intl.locale == 'ja'}
           className={classes.button}

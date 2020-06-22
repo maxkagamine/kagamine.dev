@@ -3,9 +3,10 @@ import { PageProps } from 'gatsby';
 
 export interface LocalizedPageContext {
   /**
-   * All available translations for this page as a map of locale to path.
+   * All available translations for the page as a map of locale to site-relative
+   * url, including the current locale.
    */
-  translations: Record<string, string>;
+  alternateUrls: Record<string, string>;
 }
 
 export interface LocalizedPageProps<

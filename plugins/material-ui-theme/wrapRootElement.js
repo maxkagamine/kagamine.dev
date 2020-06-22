@@ -8,6 +8,7 @@ export const wrapRootElement = ({ element }) => {
   return (
     <>
       <Helmet>
+        <meta name='theme-color' content={theme.palette.primary.main} />
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap' />
       </Helmet>
       <ThemeProvider theme={theme}>

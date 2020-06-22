@@ -4,6 +4,9 @@ module.exports = {
     repoUrl: 'https://github.com/maxkagamine/kagamine.dev'
   },
   plugins: [
+    // SSR for helmet (at top to put meta tags above everything else)
+    'gatsby-plugin-react-helmet',
+
     // Set up image preprocessing
     'gatsby-transformer-sharp',
     {
@@ -129,9 +132,6 @@ module.exports = {
 
     // Perform type checking during webpack builds
     'gatsby-plugin-typescript-checker',
-
-    // SSR for helmet (above material-ui to put meta tags at top)
-    'gatsby-plugin-react-helmet',
 
     // SSR for Material-UI's JSS styles
     'gatsby-plugin-material-ui',
