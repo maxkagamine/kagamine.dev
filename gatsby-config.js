@@ -1,3 +1,5 @@
+const LOCALES = ['en', 'ja'];
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://kagamine.dev',
@@ -97,7 +99,7 @@ module.exports = {
     {
       resolve: 'localized-blog',
       options: {
-        locales: ['en', 'ja'],
+        locales: LOCALES,
         messages: `${__dirname}/src/messages`,
         blogPostTemplate: `${__dirname}/src/pages/_blog-post.tsx`
       }
@@ -105,6 +107,60 @@ module.exports = {
 
     // Add cover images to blog posts
     'cover-images',
+
+    // Create rss feed
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: LOCALES.map(locale => ({
+          query: `
+            {
+              allMarkdownRemark(
+                filter: { fields: { locale: { eq: "${locale}" } } },
+                sort: { fields: [frontmatter___date], order: DESC }
+              ) {
+                edges {
+                  node {
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            }
+          `,
+          setup({ query: { site }, ...rest }) {
+            return {
+              ...rest,
+              site_url: `${site.siteMetadata.siteUrl}/${locale}/`
+            };
+          },
+          serialize({ query: { site, allMarkdownRemark } }) {
+            return allMarkdownRemark.edges.map(({ node }) => ({
+              title: node.frontmatter.title,
+              date: node.frontmatter.date,
+              url: `${site.siteMetadata.siteUrl}${node.fields.slug}`
+            }));
+          },
+          title: require(`./src/messages/${locale}.json`).name,
+          output: `/${locale}/feed.xml`,
+          match: `^/${locale}/`
+        }))
+      }
+    },
 
     // Configure Material-UI
     'material-ui-theme',

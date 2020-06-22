@@ -13,7 +13,7 @@ export const query = graphql`
   query HomePage($locale: String!) {
     allMarkdownRemark(
       filter: { fields: { locale: { eq: $locale } } },
-      sort: { fields: [frontmatter___date], order: [DESC] }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
@@ -41,18 +41,20 @@ export const query = graphql`
 export default function HomePage({ data, location, pageContext: { alternateUrls } }: LocalizedPageProps<GatsbyTypes.HomePageQuery>) {
   const intl = useIntl();
 
+  function handleRssFeedClick() {
+    window.open(`/${intl.locale}/feed.xml`);
+  }
+
   return (
     <Layout location={location} alternateUrls={alternateUrls}>
       <PageButtons align='right' dense>
         <Tooltip title={intl.formatMessage({ id: 'notificationsTooltip' })}>
-          <Button
-            startIcon={<NotificationsNoneIcon />}
-          >
+          <Button startIcon={<NotificationsNoneIcon />}>
             {intl.formatMessage({ id: 'notificationsButton' })}
           </Button>
         </Tooltip>
         <Tooltip title={intl.formatMessage({ id: 'rssFeedTooltip' })}>
-          <AlignedIconButton edge='end'>
+          <AlignedIconButton edge='end' onClick={handleRssFeedClick}>
             <RssFeedIcon fontSize='inherit' />
           </AlignedIconButton>
         </Tooltip>
