@@ -26,19 +26,23 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", "Noto Sans JP", sans-serif',
     fontSize: 19,
     pxToRem,
     h1: {
       fontSize: pxToRem(30),
-      fontWeight: 700
+      fontWeight: 700,
+      letterSpacing: '-0.02em'
     },
     h2: {
       fontSize: pxToRem(26),
-      fontWeight: 700
+      fontWeight: 700,
+      letterSpacing: '-0.015em'
     },
     h3: {
       fontSize: pxToRem(22),
-      fontWeight: 700
+      fontWeight: 700,
+      letterSpacing: '-0.01em'
     },
     body2: {
       fontSize: pxToRem(19),
@@ -51,14 +55,16 @@ export const theme = createMuiTheme({
     },
     overline: {
       fontWeight: 700,
-      color: 'rgba(0, 0, 0, 0.65)',
-      letterSpacing: 0
+      color: 'rgba(0, 0, 0, 0.65)'
     }
   },
   overrides: {
     MuiButton: {
       root: { // Fix alignment
-        lineHeight: pxToRem(23)
+        lineHeight: pxToRem(23),
+        '&:lang(ja)': { // Skipping 500 weight for Japanese to save on bytes
+          fontWeight: 700
+        }
       },
       // Fix button icons not matching icon buttons
       iconSizeSmall: {
@@ -142,6 +148,10 @@ theme.overrides.MuiCssBaseline = {
     img: {
       maxWidth: '100%',
       height: 'auto'
+    },
+    code: {
+      fontFamily: 'Consolas, "Lucida Console", Menlo, Monaco, "Noto Sans JP", monospace',
+      fontSize: pxToRem(14)
     },
     'code:not(.grvsc-code)': {
       // gatsby-remark-vscode's inline code support is currently a bit annoying
