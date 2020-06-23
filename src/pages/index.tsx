@@ -1,4 +1,5 @@
 import { Button, Tooltip } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 import { graphql } from 'gatsby';
@@ -6,7 +7,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { BlogPostCard } from '../components/BlogPostCard';
 import { Layout } from '../components/Layout';
-import { AlignedIconButton, PageButtons } from '../components/PageButtons';
+import { AlignedIconButton, PageControls } from '../components/PageControls';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 export const query = graphql`
@@ -38,7 +39,14 @@ export const query = graphql`
   }
 `;
 
+const useStyles = makeStyles(theme => createStyles({
+  controls: {
+    marginBottom: theme.spacing(1)
+  }
+}));
+
 export default function HomePage({ data, location, pageContext: { alternateUrls } }: LocalizedPageProps<GatsbyTypes.HomePageQuery>) {
+  const classes = useStyles();
   const intl = useIntl();
 
   function handleRssFeedClick() {
@@ -47,18 +55,20 @@ export default function HomePage({ data, location, pageContext: { alternateUrls 
 
   return (
     <Layout location={location} alternateUrls={alternateUrls}>
-      <PageButtons align='right' dense>
-        <Tooltip title={intl.formatMessage({ id: 'notificationsTooltip' })}>
-          <Button startIcon={<NotificationsNoneIcon />}>
-            {intl.formatMessage({ id: 'notificationsButton' })}
-          </Button>
-        </Tooltip>
-        <Tooltip title={intl.formatMessage({ id: 'rssFeedTooltip' })}>
-          <AlignedIconButton edge='end' onClick={handleRssFeedClick}>
-            <RssFeedIcon fontSize='inherit' />
-          </AlignedIconButton>
-        </Tooltip>
-      </PageButtons>
+      <PageControls className={classes.controls}>
+        <PageControls.Right>
+          <Tooltip title={intl.formatMessage({ id: 'notificationsTooltip' })}>
+            <Button startIcon={<NotificationsNoneIcon />}>
+              {intl.formatMessage({ id: 'notificationsButton' })}
+            </Button>
+          </Tooltip>
+          <Tooltip title={intl.formatMessage({ id: 'rssFeedTooltip' })}>
+            <AlignedIconButton edge='end' onClick={handleRssFeedClick}>
+              <RssFeedIcon fontSize='inherit' />
+            </AlignedIconButton>
+          </Tooltip>
+        </PageControls.Right>
+      </PageControls>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogPostCard
           key={node.fields!.slug!}

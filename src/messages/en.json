@@ -7,6 +7,7 @@
   "notificationsTooltip": "Get a browser notification when there's a new post",
   "rssFeedTooltip": "Get updates via RSS",
   "backToHomepage": "Back to homepage",
+  "editPageTooltip": "Edit this page on GitHub",
   "blogPostAfterwordTitle": "Thanks for reading",
   "blogPostAfterword1": "If you liked this post, please consider sharing it with a {tweet} and mention me ({me})! It helps to hear people are finding my stuff useful 🙂",
   "blogPostAfterword2": "Also, this entire site is open source on GitHub, so if you found a mistake or want to add something, you can <editLink>edit this page</editLink> or <issueLink>create an issue</issueLink> to let me know.",

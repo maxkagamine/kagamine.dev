@@ -1,2 +1,3 @@
 export { AlignedIconButton } from './AlignedIconButton';
-export { PageButtons } from './PageButtons';
+export { PageControls } from './PageControls';
+

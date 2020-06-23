@@ -1,6 +1,7 @@
-import { Button, Theme } from '@material-ui/core';
+import { Button, Theme, Tooltip } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import EditIcon from '@material-ui/icons/Edit';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import React from 'react';
@@ -8,7 +9,7 @@ import { useIntl } from 'react-intl';
 import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
-import { PageButtons } from '../components/PageButtons';
+import { AlignedIconButton, PageControls } from '../components/PageControls';
 import { TableOfContents } from '../components/TableOfContents';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
@@ -29,10 +30,15 @@ export const query = graphql`
           }
         }
       }
+      parent {
+        ... on File {
+          relativePath
+        }
+      }
     }
     site {
       siteMetadata {
-        siteUrl
+        repoUrl
       }
     }
   }
@@ -83,10 +89,19 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export default function BlogPostPage({ data, location, pageContext: { alternateUrls } }: LocalizedPageProps<GatsbyTypes.BlogPostPageQuery>) {
-  const { html, excerptPlain, frontmatter, tableOfContents, cover } = data.markdownRemark!;
-  const { title, date } = frontmatter!;
+  const { html, excerptPlain, tableOfContents, cover } = data.markdownRemark!;
+  const { title, date } = data.markdownRemark!.frontmatter!;
+  const { relativePath } = data.markdownRemark!.parent! as Pick<GatsbyTypes.File, 'relativePath'>;
+  const { repoUrl } = data.site!.siteMetadata!;
   const classes = useStyles();
   const intl = useIntl();
+
+  let editUrl = `${repoUrl}/edit/master/src/pages/${relativePath}`;
+  let issueUrl = `${repoUrl}/issues/new`;
+
+  function handleEditClick() {
+    window.open(editUrl);
+  }
 
   return (
     <Layout
@@ -100,15 +115,24 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
         description: excerptPlain
       }}
     >
-      <PageButtons>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          component={Link}
-          to={`/${intl.locale}/`}
-        >
-          {intl.formatMessage({ id: 'backToHomepage' })}
-        </Button>
-      </PageButtons>
+      <PageControls>
+        <PageControls.Left>
+          <Button
+            startIcon={<ArrowBackIcon />}
+            component={Link}
+            to={`/${intl.locale}/`}
+          >
+            {intl.formatMessage({ id: 'backToHomepage' })}
+          </Button>
+        </PageControls.Left>
+        <PageControls.Right>
+          <Tooltip title={intl.formatMessage({ id: 'editPageTooltip' })}>
+            <AlignedIconButton edge='end' onClick={handleEditClick}>
+              <EditIcon fontSize='inherit' />
+            </AlignedIconButton>
+          </Tooltip>
+        </PageControls.Right>
+      </PageControls>
       <div className={classes.articleWrapper}>
         <div className={classes.stickyTocWrapper}>
           {tableOfContents && (
@@ -128,7 +152,7 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
             <TableOfContents html={tableOfContents} className={classes.inlineToc} />
           )}
           <div dangerouslySetInnerHTML={{ __html: html! }} />
-          <BlogPostAfterword />
+          <BlogPostAfterword editUrl={editUrl} issueUrl={issueUrl} />
         </article>
       </div>
     </Layout>

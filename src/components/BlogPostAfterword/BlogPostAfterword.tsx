@@ -1,7 +1,18 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
+interface BlogPostAfterwordProps {
+  /**
+   * A link to edit this post on GitHub.
+   */
+  editUrl: string;
+
+  /**
+   * A link to create an issue on GitHub.
+   */
+  issueUrl: string;
+}
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
@@ -14,18 +25,10 @@ const useStyles = makeStyles(theme => createStyles({
   }
 }));
 
-export function BlogPostAfterword(props: {}) {
+export function BlogPostAfterword(props: BlogPostAfterwordProps) {
+  const { editUrl, issueUrl } = props;
   const classes = useStyles(props);
   const intl = useIntl();
-  const data = useStaticQuery<GatsbyTypes.BlogPostAfterwordQuery>(graphql`
-    query BlogPostAfterword {
-      site {
-        siteMetadata {
-          repoUrl
-        }
-      }
-    }
-  `);
 
   let blogPostAfterword3 = intl.formatMessage({ id: 'blogPostAfterword3' });
 
@@ -40,12 +43,8 @@ export function BlogPostAfterword(props: {}) {
       </p>
       <p>
         {intl.formatMessage({ id: 'blogPostAfterword2' }, {
-          editLink: str => <span key='editLink'>{str}</span>, // TODO: GitHub edit links
-          issueLink: str => (
-            <a href={`${data.site!.siteMetadata!.repoUrl}/issues/new`} rel='noopener noreferrer' key='issueLink'>
-              {str}
-            </a>
-          )
+          editLink: str => <a href={editUrl} rel='noopener noreferrer' key='editLink'>{str}</a>,
+          issueLink: str => <a href={issueUrl} rel='noopener noreferrer' key='issueLink'>{str}</a>
         })}
       </p>
       {blogPostAfterword3 && <p>{blogPostAfterword3}</p>}
