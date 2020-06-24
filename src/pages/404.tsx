@@ -9,6 +9,10 @@ import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 const useStyles = makeStyles(theme => createStyles({
   '@global': {
+    'html, body, #___gatsby, #gatsby-focus-wrapper, main': {
+      // Fill viewport (100vh causes address bar scrolling on mobile)
+      height: '100%'
+    },
     body: {
       background: theme.palette.primary.main
     }
@@ -18,7 +22,6 @@ const useStyles = makeStyles(theme => createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    height: '100vh',
     padding: theme.spacing(3, 0)
   },
   rin: {
