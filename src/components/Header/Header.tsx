@@ -56,7 +56,12 @@ const useStyles = makeStyles(theme => createStyles({
       theme.breakpoints.values.lg, HEIGHT,
       theme.breakpoints.values.sm, HEIGHT_MOBILE
     ),
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.only('xs')]: {
+      position: 'sticky',
+      top: 0,
+      zIndex: theme.zIndex.appBar
+    }
   },
   buttons: {
     fontSize: csslerp(
