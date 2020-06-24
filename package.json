@@ -31,6 +31,7 @@
     "gatsby-plugin-catch-links": "^2.3.5",
     "gatsby-plugin-eslint": "^2.0.8",
     "gatsby-plugin-feed": "^2.5.5",
+    "gatsby-plugin-manifest": "^2.4.13",
     "gatsby-plugin-material-ui": "^2.1.8",
     "gatsby-plugin-react-helmet": "^3.3.2",
     "gatsby-plugin-robots-txt": "^1.5.1",

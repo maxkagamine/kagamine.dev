@@ -9,6 +9,37 @@ module.exports = {
     // SSR for helmet (at top to put meta tags above everything else)
     'gatsby-plugin-react-helmet',
 
+    // Not a PWA, but create a manifest anyway in the off chance someone adds
+    // this to their homescreen
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        ...LOCALES.reduce((options, locale, i) => {
+          let localeOptions = {
+            name: require(`./src/messages/${locale}.json`).name,
+            lang: locale,
+            start_url: `/${locale}/`
+          };
+          if (i == 0) {
+            Object.assign(options, localeOptions);
+          } else {
+            options.localize.push(localeOptions);
+          }
+          return options;
+        }, { localize: [] }),
+        display: 'standalone',
+        theme_color: '#fdd002',
+        background_color: '#fdd002',
+        include_favicon: false, // Using round favicon for tabs
+        theme_color_in_head: false,
+        cache_busting_mode: 'name',
+        icon: 'src/images/profile.png',
+        icon_options: {
+          purpose: 'maskable'
+        }
+      }
+    },
+
     // Set up image preprocessing
     'gatsby-transformer-sharp',
     {
