@@ -10,6 +10,7 @@ import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageControls } from '../components/PageControls';
+import { ShareButton } from '../components/ShareButton';
 import { TableOfContents } from '../components/TableOfContents';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
@@ -100,7 +101,7 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
   let issueUrl = `${repoUrl}/issues/new`;
 
   function handleEditClick() {
-    window.open(editUrl);
+    window.open(editUrl, '', 'noreferrer');
   }
 
   return (
@@ -127,9 +128,12 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
         </PageControls.Left>
         <PageControls.Right>
           <Tooltip title={intl.formatMessage({ id: 'editPageTooltip' })}>
-            <AlignedIconButton edge='end' onClick={handleEditClick}>
+            <AlignedIconButton onClick={handleEditClick}>
               <EditIcon fontSize='inherit' />
             </AlignedIconButton>
+          </Tooltip>
+          <Tooltip title={intl.formatMessage({ id: 'shareTooltip' })}>
+            <ShareButton edge='end' />
           </Tooltip>
         </PageControls.Right>
       </PageControls>
