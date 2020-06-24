@@ -17,6 +17,19 @@ const useStyles = makeStyles({
     padding: 10,
     marginLeft: -5, // Regular buttons have 5px side padding
     marginRight: -5
+  },
+  // edgeStart & edgeEnd brought up from IconButton to keep tooltips centered
+  edgeStart: {
+    marginLeft: -12,
+    '$small&': {
+      marginLeft: -3
+    }
+  },
+  edgeEnd: {
+    marginRight: -12,
+    '$small&': {
+      marginRight: -3
+    }
   }
 });
 
@@ -25,14 +38,22 @@ const useStyles = makeStyles({
  * letting their circle overflow.
  */
 export const AlignedIconButton = React.forwardRef<HTMLDivElement, IconButtonProps>((props, ref) => {
+  const { edge, ...rest } = props;
   const classes = useStyles(props);
   const theme = useTheme();
 
   let small = (props.size ?? theme.props?.MuiIconButton?.size) == 'small';
 
   return (
-    <div className={clsx(classes.root, { [classes.small]: small })} ref={ref}>
-      <IconButton {...props} className={clsx(props.className, { [classes.smallButton]: small })} />
+    <div
+      className={clsx(classes.root, {
+        [classes.small]: small,
+        [classes.edgeStart]: edge == 'start',
+        [classes.edgeEnd]: edge == 'end'
+      })}
+      ref={ref}
+    >
+      <IconButton {...rest} className={clsx(props.className, { [classes.smallButton]: small })} />
     </div>
   );
 });
