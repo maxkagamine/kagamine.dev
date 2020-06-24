@@ -57,6 +57,7 @@ export default function FourOhFour(props: LocalizedPageProps) {
     <main className={classes.root}>
       <Helmet htmlAttributes={{ lang: intl.locale }}>
         <title>¯\_(ツ)_/¯</title>
+        <meta name='robots' content='noindex' />
       </Helmet>
       <Img
         fluid={data.file!.childImageSharp!.fluid}

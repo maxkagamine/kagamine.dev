@@ -33,7 +33,7 @@ export function BlogPostAfterword(props: BlogPostAfterwordProps) {
   let blogPostAfterword3 = intl.formatMessage({ id: 'blogPostAfterword3' });
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-nosnippet>
       <h2>{intl.formatMessage({ id: 'blogPostAfterwordTitle' })}</h2>
       <p>
         {intl.formatMessage({ id: 'blogPostAfterword1' }, {

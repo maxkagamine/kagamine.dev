@@ -162,6 +162,22 @@ module.exports = {
       }
     },
 
+    // Create sitemap
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: ['/*/404.html']
+      }
+    },
+
+    // Create robots.txt (to prevent weird image results)
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: 'Googlebot-Image', disallow: '/' }]
+      }
+    },
+
     // Configure Material-UI
     'material-ui-theme',
 
