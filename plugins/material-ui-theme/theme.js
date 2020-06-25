@@ -26,7 +26,7 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", "Noto Sans JP", sans-serif',
+    fontFamily: '"Roboto", "Noto Sans JP", sans-serif',
     fontSize: 19,
     pxToRem,
     h1: {
@@ -142,7 +142,7 @@ theme.overrides.MuiCssBaseline = {
       ...theme.typography.h3,
       margin: theme.spacing(6, 0, 3)
     },
-    p: {
+    'p, pre, blockquote': {
       margin: theme.spacing(2, 0)
     },
     img: {
@@ -150,8 +150,8 @@ theme.overrides.MuiCssBaseline = {
       height: 'auto'
     },
     code: {
-      fontFamily: 'Consolas, "Lucida Console", Menlo, Monaco, "Noto Sans JP", monospace',
-      fontSize: pxToRem(14)
+      fontFamily: '"Roboto Mono", "Noto Sans JP", monospace',
+      fontSize: 14 // Using rem here causes it to be 19.6923px for some reason
     },
     'code:not(.grvsc-code)': {
       // gatsby-remark-vscode's inline code support is currently a bit annoying
@@ -168,7 +168,6 @@ theme.overrides.MuiCssBaseline = {
       }
     },
     blockquote: {
-      margin: theme.spacing(2, 0),
       borderLeft: `4px solid ${theme.palette.grey['400']}`,
       background: theme.palette.grey['50'],
       padding: theme.spacing(0, 3),
