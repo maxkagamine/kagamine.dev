@@ -38,25 +38,21 @@ export function PageControls(props: PageControlsProps) {
   const isMobile = useMediaQuery<Theme>(theme => theme.breakpoints.down('xs'));
 
   let areas: [React.ReactNode, React.ReactNode] = [undefined, undefined];
-  let otherChildren: React.ReactNode[] = [];
 
   React.Children.forEach(children, child => {
     let element = child as React.ReactElement;
     let name = (child as any)?.type?.displayName;
     if (name == 'PageControls.Left' || name == 'PageControls.Right') {
-      let area = React.cloneElement(element, {
+      areas[name == 'PageControls.Left' ? 0 : 1] = React.cloneElement(element, {
+        key: name,
         className: clsx(element.props.className, classes.area)
       });
-      areas[name == 'PageControls.Left' ? 0 : 1] = area;
-    } else {
-      otherChildren.push(child);
     }
   });
 
   let component = (
     <div {...rest} className={clsx(className, classes.root, { [classes.alignRight]: !areas[0] })}>
       {areas}
-      {otherChildren}
     </div>
   );
 

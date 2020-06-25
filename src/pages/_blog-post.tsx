@@ -10,7 +10,7 @@ import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageControls } from '../components/PageControls';
-import { ShareButton } from '../components/ShareButton';
+import { CopyLinkShareTarget, HackerNewsShareTarget, LineShareTarget, LinkedInShareTarget, RedditShareTarget, ShareButton, TwitterShareTarget } from '../components/ShareButton';
 import { TableOfContents } from '../components/TableOfContents';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
@@ -133,7 +133,14 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
             </AlignedIconButton>
           </Tooltip>
           <Tooltip title={intl.formatMessage({ id: 'shareTooltip' })}>
-            <ShareButton edge='end' />
+            <ShareButton edge='end'>
+              <TwitterShareTarget via='maxkagamine'>{intl.formatMessage({ id: 'shareTwitter' })}</TwitterShareTarget>
+              <RedditShareTarget />
+              <LineShareTarget>{intl.formatMessage({ id: 'shareLine' })}</LineShareTarget>
+              <LinkedInShareTarget />
+              <HackerNewsShareTarget />
+              <CopyLinkShareTarget>{intl.formatMessage({ id: 'shareCopy' })}</CopyLinkShareTarget>
+            </ShareButton>
           </Tooltip>
         </PageControls.Right>
       </PageControls>

@@ -57,3 +57,5 @@ export const AlignedIconButton = React.forwardRef<HTMLDivElement, IconButtonProp
     </div>
   );
 });
+
+AlignedIconButton.displayName = 'AlignedIconButton';
