@@ -71,7 +71,8 @@ const useStyles = makeStyles(theme => createStyles({
     margin: `0 ${csslerp(
       theme.breakpoints.values.md, BUTTON_SPACING,
       theme.breakpoints.values.sm, BUTTON_SPACING_MOBILE
-    )}`
+    )}`,
+    whiteSpace: 'nowrap' // Firefox
   },
   button: {
     '&:first-child': {

@@ -38,7 +38,7 @@ const useStyles = makeStyles({
  * letting their circle overflow.
  */
 export const AlignedIconButton = React.forwardRef<HTMLDivElement, IconButtonProps>((props, ref) => {
-  const { edge, ...rest } = props;
+  const { edge, title, ...rest } = props;
   const classes = useStyles(props);
   const theme = useTheme();
 
@@ -52,6 +52,7 @@ export const AlignedIconButton = React.forwardRef<HTMLDivElement, IconButtonProp
         [classes.edgeEnd]: edge == 'end'
       })}
       ref={ref}
+      title={title} // Some over-aggressive filter lists block button[title="Share"]
     >
       <IconButton {...rest} className={clsx(props.className, { [classes.smallButton]: small })} />
     </div>

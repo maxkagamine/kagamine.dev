@@ -1,5 +1,5 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 interface BlogPostAfterwordProps {
@@ -29,6 +29,16 @@ export function BlogPostAfterword(props: BlogPostAfterwordProps) {
   const { editUrl, issueUrl } = props;
   const classes = useStyles(props);
   const intl = useIntl();
+  const tweetRef = useRef<HTMLAnchorElement>(null);
+  const [tweetButtonBlocked, setTweetButtonBlocked] = useState(false);
+
+  useEffect(() => {
+    // uBlock by default won't break twitter buttons, but it may if the user
+    // enables more aggressive social blocking lists
+    if (tweetRef.current && getComputedStyle(tweetRef.current).display == 'none') {
+      setTweetButtonBlocked(true);
+    }
+  }, [tweetRef]);
 
   let blogPostAfterword3 = intl.formatMessage({ id: 'blogPostAfterword3' });
 
@@ -37,7 +47,17 @@ export function BlogPostAfterword(props: BlogPostAfterwordProps) {
       <h2>{intl.formatMessage({ id: 'blogPostAfterwordTitle' })}</h2>
       <p>
         {intl.formatMessage({ id: 'blogPostAfterword1' }, {
-          tweet: <a href='https://twitter.com/intent/tweet' className='twitter-share-button' data-size='large' key='tweet'>Tweet</a>,
+          tweet: str => tweetButtonBlocked ? str : (
+            <a
+              href='https://twitter.com/intent/tweet'
+              className='twitter-share-button'
+              data-size='large'
+              key='tweet'
+              ref={tweetRef}
+            >
+              {str}
+            </a>
+          ),
           me: <a href='https://twitter.com/maxkagamine' rel='noopener noreferrer' key='me'>@maxkagamine</a>
         })}
       </p>
