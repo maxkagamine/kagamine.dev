@@ -32,11 +32,21 @@ module.exports = {
         background_color: '#fdd002',
         include_favicon: false, // Using round favicon for tabs
         theme_color_in_head: false,
+        legacy: false,
         cache_busting_mode: 'name',
         icon: 'src/images/profile.png',
         icon_options: {
           purpose: 'maskable'
         }
+      }
+    },
+
+    // Generate favicon.ico, same as manifest icon but cropped to circle
+    {
+      resolve: 'favicon-ico',
+      options: {
+        icon: 'src/images/profile.png',
+        shape: 'circle'
       }
     },
 
