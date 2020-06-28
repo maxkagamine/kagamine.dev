@@ -49,7 +49,9 @@ export function Metadata(props: MetadataProps) {
       '@type': 'Person',
       name: intl.formatMessage({ id: 'kagamineRin' }),
       image: 'https://vocadb.net/Artist/Picture/43192',
-      sameAs: 'https://en.wikipedia.org/wiki/Kagamine_Rin/Len'
+      sameAs: intl.locale == 'en' ?
+        'https://en.wikipedia.org/wiki/Kagamine_Rin/Len' :
+        'https://ja.wikipedia.org/wiki/%E9%8F%A1%E9%9F%B3%E3%83%AA%E3%83%B3%E3%83%BB%E3%83%AC%E3%83%B3'
     },
     sameAs: [
       'https://twitter.com/maxkagamine',
