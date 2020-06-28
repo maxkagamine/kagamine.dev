@@ -8,7 +8,6 @@ import { useIntl } from 'react-intl';
 import { BlogPostCard } from '../components/BlogPostCard';
 import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageControls } from '../components/PageControls';
-import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 export const query = graphql`
   query HomePage($locale: String!) {

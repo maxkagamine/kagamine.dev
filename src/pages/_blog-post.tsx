@@ -12,7 +12,6 @@ import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageControls } from '../components/PageControls';
 import { CopyLinkShareTarget, HackerNewsShareTarget, LineShareTarget, LinkedInShareTarget, RedditShareTarget, ShareButton, TwitterShareTarget } from '../components/ShareButton';
 import { TableOfContents } from '../components/TableOfContents';
-import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 export const query = graphql`
   query BlogPostPage($slug: String!) {

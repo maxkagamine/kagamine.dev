@@ -5,7 +5,6 @@ import Img from 'gatsby-image';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
-import { LocalizedPageProps } from '../utils/LocalizedPageProps';
 
 // TODO: Switch this back to webp once on Win10/WSL (webp transparency broken
 // on windows: https://github.com/gatsbyjs/gatsby/issues/14497)
