@@ -23,7 +23,7 @@ interface LayoutProps {
    */
   metadata?: PageMetadata;
 
-  children: React.ReactNode;
+  children: NonNullable<React.ReactNode>;
 }
 
 const useStyles = makeStyles(theme => createStyles({

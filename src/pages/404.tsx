@@ -1,11 +1,25 @@
 import { Button, Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
 import { LocalizedPageProps } from '../utils/LocalizedPageProps';
+
+// TODO: Switch this back to webp once on Win10/WSL (webp transparency broken
+// on windows: https://github.com/gatsbyjs/gatsby/issues/14497)
+export const query = graphql`
+  query FourOhFour {
+    file(relativePath: {eq: "rin-kongou-chuuha.png"}) {
+      childImageSharp {
+        fluid(maxWidth: 670) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+  }
+`;
 
 const useStyles = makeStyles(theme => createStyles({
   '@global': {
@@ -39,21 +53,8 @@ const useStyles = makeStyles(theme => createStyles({
   }
 }));
 
-export default function FourOhFour(props: LocalizedPageProps) {
-  const classes = useStyles(props);
-  // TODO: Switch this back to webp once on Win10/WSL (webp transparency broken
-  // on windows: https://github.com/gatsbyjs/gatsby/issues/14497)
-  const data = useStaticQuery<GatsbyTypes.FourOhFourQuery>(graphql`
-    query FourOhFour {
-      file(relativePath: {eq: "rin-kongou-chuuha.png"}) {
-        childImageSharp {
-          fluid(maxWidth: 670) {
-            ...GatsbyImageSharpFluid_noBase64
-          }
-        }
-      }
-    }
-  `);
+export default function FourOhFour({ data }: LocalizedPageProps<GatsbyTypes.FourOhFourQuery>) {
+  const classes = useStyles();
   const intl = useIntl();
 
   return (

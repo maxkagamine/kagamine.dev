@@ -1,4 +1,4 @@
-import LinkIcon from '@material-ui/icons/Link';
+import ContentCopyIcon from '@material-ui/icons/ContentCopy';
 import React from 'react';
 import { ShareButtonData, ShareTarget, ShareTargetProps } from './ShareTarget';
 
@@ -7,10 +7,9 @@ export function CopyLinkShareTarget(props: ShareTargetProps) {
     navigator.clipboard?.writeText(data.url);
   }
 
-  // TODO: Next version of Material-UI will have ContentCopy icon
   return (
     <ShareTarget
-      icon={<LinkIcon fontSize='inherit' />}
+      icon={<ContentCopyIcon fontSize='inherit' />}
       onClick={handleClick}
       {...props}
     ></ShareTarget>
