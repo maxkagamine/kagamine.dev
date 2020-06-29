@@ -62,5 +62,11 @@
     "react-intl": "^4.7.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "> 0.5% in JP",
+    "not IE <= 11",
+    "not Edge <= 18"
+  ]
 }
