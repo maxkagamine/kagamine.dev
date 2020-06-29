@@ -6,7 +6,7 @@
     "start": "gatsby develop -p 3900",
     "serve": "npm run build && firebase serve -p 3900",
     "clean": "gatsby clean",
-    "postinstall": "npm -C functions ci"
+    "postinstall": "npm ci --prefix functions"
   },
   "dependencies": {
     "@formatjs/intl-pluralrules": "^2.2.10",
