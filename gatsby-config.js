@@ -256,6 +256,12 @@ module.exports = {
     // SSR for Material-UI's JSS styles
     'gatsby-plugin-material-ui',
 
+    // Firebase doesn't currently allow disabling the default domains
+    {
+      resolve: 'redirect-domain',
+      options: { to: 'kagamine.dev' }
+    },
+
     // Post-build shenanigans
     'ascii-art'
   ]
