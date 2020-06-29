@@ -2,10 +2,11 @@
   "name": "kagamine.dev",
   "private": true,
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build && tsc -p functions",
     "start": "gatsby develop -p 3900",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "serve": "npm run build && firebase serve -p 3900",
+    "clean": "gatsby clean",
+    "postinstall": "npm -C functions ci"
   },
   "dependencies": {
     "@formatjs/intl-pluralrules": "^2.2.10",

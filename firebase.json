@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "public",
+    "cleanUrls": true,
+    "trailingSlash": true,
+    "rewrites": [
+      {
+        "source": "/",
+        "function": "root"
+      }
+    ]
+  }
+}
