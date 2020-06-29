@@ -58,13 +58,13 @@ export function BlogPostAfterword(props: BlogPostAfterwordProps) {
               {str}
             </a>
           ),
-          me: <a href='https://twitter.com/maxkagamine' rel='noopener noreferrer' key='me'>@maxkagamine</a>
+          me: <a href='https://twitter.com/maxkagamine' target='_blank' rel='noopener noreferrer' key='me'>@maxkagamine</a>
         })}
       </p>
       <p>
         {intl.formatMessage({ id: 'blogPostAfterword2' }, {
-          editLink: str => <a href={editUrl} rel='noopener noreferrer' key='editLink'>{str}</a>,
-          issueLink: str => <a href={issueUrl} rel='noopener noreferrer' key='issueLink'>{str}</a>
+          editLink: str => <a href={editUrl} target='_blank' rel='noopener noreferrer' key='editLink'>{str}</a>,
+          issueLink: str => <a href={issueUrl} target='_blank' rel='noopener noreferrer' key='issueLink'>{str}</a>
         })}
       </p>
       {blogPostAfterword3 && <p>{blogPostAfterword3}</p>}
