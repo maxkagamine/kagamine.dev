@@ -5,6 +5,7 @@ import RssFeedIcon from '@material-ui/icons/RssFeed';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { LocalizedPageProps } from '../../plugins/localized-blog';
 import { BlogPostCard } from '../components/BlogPostCard';
 import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageControls } from '../components/PageControls';

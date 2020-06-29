@@ -1,9 +1,11 @@
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
+import { CreateNodeArgs } from 'gatsby';
+import { createFilePath } from 'gatsby-source-filesystem';
+import path from 'path';
+import { LocalizedBlogOptions, MarkdownRemarkNode } from './types';
 
-module.exports = ({ node, getNode, actions }, pluginOptions) => {
-  const { createNodeField } = actions;
-  const { locales = [] } = pluginOptions;
+export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs<MarkdownRemarkNode>, pluginOptions: LocalizedBlogOptions) => {
+  let { createNodeField } = actions;
+  let { locales = [] } = pluginOptions;
 
   if (node.internal.type != 'MarkdownRemark') {
     return;

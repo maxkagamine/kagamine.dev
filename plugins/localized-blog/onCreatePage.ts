@@ -1,10 +1,12 @@
-const createPageContext = require('./createPageContext');
+import { Actions, CreatePageArgs, Page } from 'gatsby';
+import { createPageContext } from './createPageContext';
+import { LocalizedBlogOptions } from './types';
 
 /**
  * 404 pages need some special handling; breaking this out to avoid clutter.
  * Returns a boolean indicating whether the page was handled.
  */
-function handle404(page, createPage, locales) {
+function handle404(page: Page, createPage: Actions['createPage'], locales: string[]): boolean {
   // Leave Gatsby's development 404 page deleted
   if (page.path == '/dev-404-page/') {
     return true;
@@ -42,9 +44,9 @@ function handle404(page, createPage, locales) {
   return false;
 }
 
-module.exports = async ({ page, actions }, pluginOptions) => {
-  const { createPage, deletePage } = actions;
-  const { locales = [] } = pluginOptions;
+export const onCreatePage = async ({ page, actions }: CreatePageArgs, pluginOptions: LocalizedBlogOptions) => {
+  let { createPage, deletePage } = actions;
+  let { locales = [] } = pluginOptions;
 
   // Remove automatically-generated page
   deletePage(page);

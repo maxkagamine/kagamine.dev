@@ -1,3 +1,5 @@
+require('ts-node').register();
+
 const LOCALES = ['en', 'ja'];
 
 module.exports = {

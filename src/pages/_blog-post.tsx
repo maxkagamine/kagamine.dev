@@ -6,6 +6,7 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { LocalizedPageProps } from '../../plugins/localized-blog';
 import { BlogPostAfterword } from '../components/BlogPostAfterword';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
