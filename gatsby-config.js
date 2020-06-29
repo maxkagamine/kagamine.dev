@@ -138,6 +138,10 @@ module.exports = {
       }
     },
 
+    // Configure Material-UI (this comes before localized-blog so that the
+    // latter will wrap it with the intl provider)
+    'material-ui-theme',
+
     // Create localized pages & set up react-intl
     {
       resolve: 'localized-blog',
@@ -220,9 +224,6 @@ module.exports = {
         policy: [{ userAgent: 'Googlebot-Image', disallow: '/' }]
       }
     },
-
-    // Configure Material-UI
-    'material-ui-theme',
 
     // Client-side routing for <a> tags in markdown posts
     'gatsby-plugin-catch-links',

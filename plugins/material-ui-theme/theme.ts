@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const KAGAMINE_YELLOW = '#fdd002';
 const KAGAMINE_BLUE = '#1282c3';
 
-const pxToRem = px => `${px / 16}rem`;
+const pxToRem = (px: number) => `${px / 16}rem`;
 
 export const theme = createMuiTheme({
   palette: {
@@ -113,7 +113,7 @@ export const theme = createMuiTheme({
 });
 
 // Apply styles to html elements for markdown
-theme.overrides.MuiCssBaseline = {
+theme.overrides!.MuiCssBaseline = {
   '@global': {
     a: {
       color: theme.palette.secondary.main,
@@ -177,3 +177,16 @@ theme.overrides.MuiCssBaseline = {
     }
   }
 };
+
+
+declare module '@material-ui/core/styles/createBreakpoints' {
+  interface BreakpointOverrides {
+    xl: false; // Removing unused breakpoint
+  }
+}
+
+declare module '@material-ui/core/styles/createTypography' {
+  interface FontStyleOptions {
+    pxToRem: (px: number) => string; // Missing in declaration
+  }
+}
