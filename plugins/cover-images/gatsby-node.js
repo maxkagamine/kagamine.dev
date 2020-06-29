@@ -1,1 +1,0 @@
-exports.createResolvers = require('./createResolvers');
