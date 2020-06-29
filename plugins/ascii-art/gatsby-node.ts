@@ -1,5 +1,5 @@
-const fs = require('fs').promises;
-const glob = require('glob');
+import { promises as fs } from 'fs';
+import globby from 'globby';
 
 const ART = `
 
@@ -48,15 +48,10 @@ $$  j@'     $L      1@"                      '*%@@$,,,gg@@M*"'    ]$F      $$
 
 `;
 
-exports.onPostBuild = async () => {
-  let paths = await new Promise((resolve, reject) => {
-    glob('./public/**/*.html', (err, paths) => err ? reject(err) : resolve(paths));
-  });
+export const onPostBuild = async () => {
+  let paths = await globby('./public/**/*.html', { onlyFiles: true });
 
   let promises = paths.map(async path => {
-    if ((await fs.stat(path)).isDirectory()) {
-      return;
-    }
     let content = await fs.readFile(path, { encoding: 'utf8' });
     content = content.replace('<!DOCTYPE html>', dt => `${dt}<!--${ART}-->`);
     await fs.writeFile(path, content);

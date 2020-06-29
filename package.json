@@ -53,6 +53,7 @@
     "gatsby-source-filesystem": "^2.3.14",
     "gatsby-transformer-remark": "^2.8.19",
     "gatsby-transformer-sharp": "^2.5.7",
+    "globby": "^11.0.1",
     "intl-messageformat-parser": "^5.2.0",
     "lodash.mapvalues": "^4.6.0",
     "onedark-pro": "github:Binaryify/OneDark-Pro",
