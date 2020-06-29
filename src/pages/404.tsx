@@ -56,6 +56,17 @@ export default function FourOhFour({ data }: LocalizedPageProps<GatsbyTypes.Four
   const classes = useStyles();
   const intl = useIntl();
 
+  // TODO: Use a single 404.html for all locales. Simply serving a localized 404
+  // from a cloud function doesn't work, as the router expects a single page to
+  // match a given url and will rewrite the url if it doesn't match the loaded
+  // page. Currently, the localized pages are matching routes under their locale
+  // prefix, but non-localized routes (e.g. /foo) are displaying the English 404
+  // (cloned by the onCreatePage hook). Best solution is probably to give the
+  // 404 page all locale's messages and defer rendering until client-side when
+  // we can check `navigator.language`. SSR isn't super necessary for a 404
+  // anyway. This also has the advantage of meeting the CDN's expectation of a
+  // single /404.html (meaning can't get a 200 by hitting up /en/404).
+
   return (
     <main className={classes.root}>
       <Helmet htmlAttributes={{ lang: intl.locale }}>

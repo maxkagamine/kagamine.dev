@@ -17,7 +17,9 @@ function handle404(page, createPage, locales) {
   }
 
   // Create 404.html pages under each locale, with matchPath set for client-side
-  // routing; a cloud function will be used to route 404s to the correct locale
+  // routing
+  // NOTE: See todo in 404.tsx (original plan of using cloud function to route
+  // to localized 404 does not work due to router behavior)
   if (page.path == '/404.html') {
     for (let locale of locales) {
       createPage({

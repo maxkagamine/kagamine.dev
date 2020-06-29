@@ -7,6 +7,14 @@
       {
         "source": "/",
         "function": "root"
+      },
+      {
+        "source": "/en/**",
+        "destination": "/en/404.html"
+      },
+      {
+        "source": "/ja/**",
+        "destination": "/ja/404.html"
       }
     ]
   }
