@@ -155,6 +155,27 @@ module.exports = {
     // Add cover images to blog posts
     'cover-images',
 
+    // Client-side routing for <a> tags in markdown posts
+    'gatsby-plugin-catch-links',
+
+    // Load script for tweet buttons & twitter embeds
+    'gatsby-plugin-twitter',
+
+    // Set up firebase sdk & analytics
+    {
+      resolve: 'firebase-init',
+      options: {
+        apiKey: 'AIzaSyDtssZS3bpqvZLMsKM9mBWMxvGxJ1JlQO4',
+        authDomain: 'kagamine-dev.firebaseapp.com',
+        databaseURL: 'https://kagamine-dev.firebaseio.com',
+        projectId: 'kagamine-dev',
+        storageBucket: 'kagamine-dev.appspot.com',
+        messagingSenderId: '82879755365',
+        appId: '1:82879755365:web:d5d51ac04d1df7fc1c428c',
+        measurementId: 'G-E3767BNKVB'
+      }
+    },
+
     // Create rss feed
     {
       resolve: 'gatsby-plugin-feed',
@@ -224,12 +245,6 @@ module.exports = {
         policy: [{ userAgent: 'Googlebot-Image', disallow: '/' }]
       }
     },
-
-    // Client-side routing for <a> tags in markdown posts
-    'gatsby-plugin-catch-links',
-
-    // Load script for tweet buttons & twitter embeds
-    'gatsby-plugin-twitter',
 
     // Generate types for graphql queries
     {
