@@ -16,53 +16,53 @@
         "source": "/ja/**",
         "destination": "/ja/404.html"
       }
+    ],
+    "redirects": [
+      {
+        "source": "/blog/mocking-httpclient-ihttpclientfactory-with-moq-the-easy-way",
+        "destination": "/en/mock-httpclient-the-easy-way/",
+        "type": 301
+      },
+      {
+        "source": "/blog/nuke-a-git-repo-with-unrelenting-force",
+        "destination": "/en/fus-ro-dah/",
+        "type": 301
+      },
+      {
+        "source": "/blog/gg-a-bash-function-for-faster-git-committing",
+        "destination": "/en/gg-faster-git-commits/",
+        "type": 301
+      },
+      {
+        "source": "/blog/moq-de-httpclient-to-ihttpclientfactory-o-mokkusuru-kantanna-houhou",
+        "destination": "/ja/httpclient-mock-kantan-na-houhou/",
+        "type": 301
+      },
+      {
+        "source": "/blog/yuruginaki-chikara-de-git-no-henkou-o-kesu",
+        "destination": "/ja/fus-ro-dah/",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, no-cache"
+          }
+        ]
+      },
+      {
+        "regex": ".*[a-f0-9]{20,}.*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      }
     ]
-  },
-  "redirects": [
-    {
-      "source": "/blog/mocking-httpclient-ihttpclientfactory-with-moq-the-easy-way",
-      "destination": "/en/mock-httpclient-the-easy-way/",
-      "type": 301
-    },
-    {
-      "source": "/blog/nuke-a-git-repo-with-unrelenting-force",
-      "destination": "/en/fus-ro-dah/",
-      "type": 301
-    },
-    {
-      "source": "/blog/gg-a-bash-function-for-faster-git-committing",
-      "destination": "/en/gg-faster-git-commits/",
-      "type": 301
-    },
-    {
-      "source": "/blog/moq-de-httpclient-to-ihttpclientfactory-o-mokkusuru-kantanna-houhou",
-      "destination": "/ja/httpclient-mock-kantan-na-houhou/",
-      "type": 301
-    },
-    {
-      "source": "/blog/yuruginaki-chikara-de-git-no-henkou-o-kesu",
-      "destination": "/ja/fus-ro-dah/",
-      "type": 301
-    }
-  ],
-  "headers": [
-    {
-      "source": "**",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, no-cache"
-        }
-      ]
-    },
-    {
-      "source": ".*[a-f0-9]{20,}.*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    }
-  ]
+  }
 }
