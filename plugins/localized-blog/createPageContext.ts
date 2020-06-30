@@ -1,8 +1,9 @@
 import { parsedMessages } from './onPreInit';
-import { InternalLocalizedPageContext, LocalizedPageContext } from './types';
+import { InternalLocalizedPageContext } from './types';
 
 /**
- * Creates a standard page context object.
+ * Creates a standard page context object. If locale is undefined, all locales'
+ * messages will be given (used only for the 404 page).
  *
  * @param locale The page's locale.
  * @param alternateUrls All available translations for the page as a map of
@@ -10,14 +11,16 @@ import { InternalLocalizedPageContext, LocalizedPageContext } from './types';
  * @param additionalContext Additional properties to include.
  */
 export function createPageContext(
-  locale: string,
+  locale: string | undefined,
   alternateUrls: Record<string, string>,
-  additionalContext: Omit<LocalizedPageContext, 'alternateUrls'> = {}
+  additionalContext: Omit<InternalLocalizedPageContext, 'locale' |  'messages' | 'alternateUrls'> = {}
 ): InternalLocalizedPageContext {
   return {
     locale,
+    messages: locale == undefined ?
+      Object.fromEntries(parsedMessages.entries()) :
+      parsedMessages.get(locale)!,
     alternateUrls,
-    messages: parsedMessages.get(locale)!,
     ...additionalContext
   };
 }

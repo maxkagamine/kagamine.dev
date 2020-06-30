@@ -33,11 +33,17 @@ export interface LocalizedPageContext {
    * The slug for use in the blog post template's page query.
    */
   slug?: string;
+
+  /**
+   * The locale for use in page queries (use `intl.locale` otherwise). Undefined
+   * in 404 page.
+   */
+  locale?: string;
 }
 
 export interface InternalLocalizedPageContext extends LocalizedPageContext {
-  locale: string;
-  messages: Messages;
+  locales?: string[]; // Used only for 404 page
+  messages: Messages | Record<string, Messages>;
 }
 
 export interface LocalizedPageProps<
