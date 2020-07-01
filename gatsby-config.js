@@ -52,6 +52,27 @@ module.exports = {
       }
     },
 
+    // Configure firebase & set up analytics
+    {
+      resolve: 'init',
+      options: {
+        firebase: {
+          apiKey: 'AIzaSyDtssZS3bpqvZLMsKM9mBWMxvGxJ1JlQO4',
+          authDomain: 'kagamine-dev.firebaseapp.com',
+          databaseURL: 'https://kagamine-dev.firebaseio.com',
+          projectId: 'kagamine-dev',
+          storageBucket: 'kagamine-dev.appspot.com',
+          messagingSenderId: '82879755365',
+          appId: '1:82879755365:web:d5d51ac04d1df7fc1c428c'
+          // measurementId: 'G-E3767BNKVB'
+        },
+        analytics: {
+          measurementId: 'G-39LC601E4K'
+        },
+        domain: 'kagamine.dev'
+      }
+    },
+
     // Set up image preprocessing
     'gatsby-transformer-sharp',
     {
@@ -161,21 +182,6 @@ module.exports = {
     // Load script for tweet buttons & twitter embeds
     'gatsby-plugin-twitter',
 
-    // Set up firebase sdk & analytics
-    {
-      resolve: 'firebase-init',
-      options: {
-        apiKey: 'AIzaSyDtssZS3bpqvZLMsKM9mBWMxvGxJ1JlQO4',
-        authDomain: 'kagamine-dev.firebaseapp.com',
-        databaseURL: 'https://kagamine-dev.firebaseio.com',
-        projectId: 'kagamine-dev',
-        storageBucket: 'kagamine-dev.appspot.com',
-        messagingSenderId: '82879755365',
-        appId: '1:82879755365:web:d5d51ac04d1df7fc1c428c',
-        measurementId: 'G-E3767BNKVB'
-      }
-    },
-
     // Create rss feed
     {
       resolve: 'gatsby-plugin-feed',
@@ -273,12 +279,6 @@ module.exports = {
 
     // SSR for Material-UI's JSS styles
     'gatsby-plugin-material-ui',
-
-    // Firebase doesn't currently allow disabling the default domains
-    {
-      resolve: 'redirect-domain',
-      options: { to: 'kagamine.dev' }
-    },
 
     // Post-build shenanigans
     'ascii-art'
