@@ -55,7 +55,16 @@
         ]
       },
       {
-        "regex": ".*[a-f0-9]{20,}.*",
+        "source": "*.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "@(icons|static)/**",
         "headers": [
           {
             "key": "Cache-Control",
