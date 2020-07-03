@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/messaging';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { ManageNotificationsData } from '../../functions/src/types';
 
 const FIREBASE_ERROR_PERMISSION_BLOCKED = 'messaging/permission-blocked';
 
@@ -15,6 +16,10 @@ export enum NotificationsState {
 
 export interface SubscribeFunction {
   (subscribe?: boolean): Promise<void>;
+}
+
+function manageNotifications(data: ManageNotificationsData) {
+  return firebase.functions().httpsCallable('manageNotifications')(data);
 }
 
 // NOTE: This implementation only supports one usage (for multiple components,
@@ -49,16 +54,14 @@ export function useFirebaseNotifications(topic: string): [NotificationsState, Su
 
         // Subscribe to topic
         let token = await firebase.messaging().getToken();
-        console.log('Subscribe:', token); // TODO: Send token to cloud function to subscribe to topic
-
+        await manageNotifications({ token, topic, subscribe });
         localStorage[TOKEN_KEY] = token;
       } else {
         // Optimistically show unsubscribed state
         setState(NotificationsState.Unsubscribed);
 
         // Unsubscribe from topic
-        console.log('Unsubscribe:', localStorage[TOKEN_KEY]); // TODO: Send token to cloud function to unsubscribe from topic
-
+        await manageNotifications({ token: localStorage[TOKEN_KEY], topic, subscribe });
         delete localStorage[TOKEN_KEY];
       }
     } catch (e) {
