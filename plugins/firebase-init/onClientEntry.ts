@@ -1,7 +1,13 @@
 import firebase from 'firebase/app';
+import 'firebase/functions';
+import 'firebase/messaging';
 import { InitOptions } from './types';
 
 export const onClientEntry = (_: never, pluginOptions: InitOptions) => {
+  if (typeof window == 'undefined') {
+    return;
+  }
+
   firebase.initializeApp(pluginOptions.firebaseConfig);
   firebase.messaging().usePublicVapidKey(pluginOptions.vapidKey);
 

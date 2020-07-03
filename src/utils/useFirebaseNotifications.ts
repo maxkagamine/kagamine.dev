@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import 'firebase/messaging';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ManageNotificationsData } from '../../functions/src/types';
@@ -31,6 +30,9 @@ export function useFirebaseNotifications(topic: string): [NotificationsState, Su
 
   // Current notifications state for topic
   let [state, setState] = useState<NotificationsState>(() => {
+    if (typeof window == 'undefined') { // SSR
+      return NotificationsState.Unsubscribed;
+    }
     if (!('Notification' in window)) {
       return NotificationsState.NotSupported;
     }
