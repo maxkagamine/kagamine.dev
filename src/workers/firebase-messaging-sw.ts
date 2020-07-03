@@ -1,5 +1,5 @@
 ///<reference lib="webworker" />
-import { MessagePayload } from '@firebase/messaging/dist/interfaces/message-payload';
+import type { MessagePayload } from '@firebase/messaging/dist/interfaces/message-payload';
 declare const self: ServiceWorkerGlobalScope;
 
 /*
@@ -17,7 +17,6 @@ declare const self: ServiceWorkerGlobalScope;
 self.addEventListener('push', (e: PushEvent) => e.waitUntil(onPush(e)));
 self.addEventListener('notificationclick', (e: NotificationEvent) => e.waitUntil(onNotificationClick(e)));
 
-// https://github.com/firebase/firebase-js-sdk/blob/firebase%407.15.5/packages/messaging/src/controllers/sw-controller.ts#L153
 async function onPush(event: PushEvent) {
   // Get message payload
   let payload: MessagePayload;
@@ -32,24 +31,19 @@ async function onPush(event: PushEvent) {
   }
 
   // Show notification
-  let title = payload.notification.title;
-  await self.registration.showNotification(title, payload.notification);
+  let { title, ...notificationOptions } = payload.notification;
+  await self.registration.showNotification(title, notificationOptions);
 }
 
-// https://github.com/firebase/firebase-js-sdk/blob/firebase%407.15.5/packages/messaging/src/controllers/sw-controller.ts#L190
 async function onNotificationClick(event: NotificationEvent) {
-  // Get payload (note that because we didn't set FCM_MSG in onPush, the
-  // default onNotificationClick handler will ignore this event)
-  let payload: MessagePayload = event.notification?.data;
-  if (!payload) {
-    return;
-  }
-
   // Close the notification
   event.stopImmediatePropagation();
   event.notification.close();
 
+  // Get url (there's no standard property for onClick; we could use fcmOptions
+  // like firebase, but since we're DIY-ing this part, we can just use data)
+  let url = event.notification.data?.url ?? self.location.origin;
+
   // Open the link in a new tab
-  let link = payload.fcmOptions?.link ?? payload.notification?.click_action ?? self.location.origin;
-  await self.clients.openWindow(link);
+  await self.clients.openWindow(url);
 }
