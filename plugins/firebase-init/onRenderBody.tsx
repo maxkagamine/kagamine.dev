@@ -7,7 +7,7 @@ function script(key: string, js: string) {
 }
 
 export const onRenderBody = ({ setHeadComponents }: RenderBodyArgs, pluginOptions: InitOptions) => {
-  let { analytics: { measurementId }, domain } = pluginOptions;
+  let { measurementId, domain } = pluginOptions;
   let head: React.ReactNode[] = [];
 
   // Set up analytics. Client-side routing is tracked when Enhanced Measurement

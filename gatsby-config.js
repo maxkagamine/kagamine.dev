@@ -54,9 +54,9 @@ module.exports = {
 
     // Configure firebase & set up analytics
     {
-      resolve: 'init',
+      resolve: 'firebase-init',
       options: {
-        firebase: {
+        firebaseConfig: {
           apiKey: 'AIzaSyDtssZS3bpqvZLMsKM9mBWMxvGxJ1JlQO4',
           authDomain: 'kagamine-dev.firebaseapp.com',
           databaseURL: 'https://kagamine-dev.firebaseio.com',
@@ -66,10 +66,9 @@ module.exports = {
           appId: '1:82879755365:web:d5d51ac04d1df7fc1c428c'
           // measurementId: 'G-E3767BNKVB'
         },
-        analytics: {
-          measurementId: 'G-39LC601E4K'
-        },
-        domain: 'kagamine.dev'
+        measurementId: 'G-39LC601E4K',
+        domain: 'kagamine.dev',
+        vapidKey: 'BD_wHrdYAmd5GUysYbM69y3QnjqIF4oA2hw1oA1xZPwActCSy3x5mPg35MUzuS0HladBbhMxIFZcW-CoP8_HhEI'
       }
     },
 

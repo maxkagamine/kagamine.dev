@@ -5,6 +5,8 @@
   "readMore": "Read more",
   "notificationsButton": "Notify me",
   "notificationsTooltip": "Get a browser notification when there's a new post",
+  "notificationsDenied": "To get a notification when there's a new post, turn on the notifications permission for this site.",
+  "notificationsError": "Unable to subscribe to push notifications. Your browser might not support this feature.",
   "rssFeedTooltip": "Get updates via RSS",
   "backToHomepage": "Back to homepage",
   "editPageTooltip": "Edit this page on GitHub",

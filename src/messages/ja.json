@@ -5,6 +5,8 @@
   "readMore": "もっと読む",
   "notificationsButton": "フォロー",
   "notificationsTooltip": "新しい投稿があったらブラウザ通知を受信する",
+  "notificationsDenied": "新しい投稿の通知を受信するためにはサイトの設定で通知を許可してください",
+  "notificationsError": "プッシュ通知に登録できませんでした。ブラウザがこの機能をサポートしないかもしれません",
   "rssFeedTooltip": "RSSでフォローする",
   "backToHomepage": "トップへ戻る",
   "editPageTooltip": "このページをGitHubで編集する",

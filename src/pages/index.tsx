@@ -1,6 +1,5 @@
-import { Button, Tooltip } from '@material-ui/core';
+import { Tooltip } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 import { graphql } from 'gatsby';
 import React from 'react';
@@ -8,6 +7,7 @@ import { useIntl } from 'react-intl';
 import { LocalizedPageProps } from '../../plugins/localized-blog';
 import { BlogPostCard } from '../components/BlogPostCard';
 import { Layout } from '../components/Layout';
+import { NotificationsButton } from '../components/NotificationsButton';
 import { AlignedIconButton, PageControls } from '../components/PageControls';
 
 export const query = graphql`
@@ -57,11 +57,7 @@ export default function HomePage({ data, location, pageContext: { alternateUrls 
     <Layout location={location} alternateUrls={alternateUrls}>
       <PageControls className={classes.controls}>
         <PageControls.Right>
-          <Tooltip title={intl.formatMessage({ id: 'notificationsTooltip' })}>
-            <Button startIcon={<NotificationsNoneIcon />}>
-              {intl.formatMessage({ id: 'notificationsButton' })}
-            </Button>
-          </Tooltip>
+          <NotificationsButton />
           <Tooltip title={intl.formatMessage({ id: 'rssFeedTooltip' })}>
             <AlignedIconButton edge='end' onClick={handleRssFeedClick}>
               <RssFeedIcon fontSize='inherit' />

@@ -2,20 +2,23 @@ export interface InitOptions {
   /**
    * The firebase config object.
    */
-  firebase: object;
+  firebaseConfig: object;
 
   /**
-   * Analytics config. Using Google Analytics directly rather than via Firebase
-   * as the latter doesn't currently support Enhanced Measurement, which tracks
+   * Analytics id. Using Google Analytics directly rather than via Firebase as
+   * the latter doesn't currently support Enhanced Measurement, which tracks
    * client-side route changes for us automatically.
    */
-  analytics: {
-    measurementId: string;
-  };
+  measurementId: string;
 
   /**
    * Primary domain to redirect to if neither this nor localhost. This is to
    * prevent the site from being viewed from firebase's default domains.
    */
   domain: string;
+
+  /**
+   * Public VAPID key for notifications.
+   */
+  vapidKey: string;
 }

@@ -80,6 +80,15 @@
             "value": "public, max-age=31536000, immutable"
           }
         ]
+      },
+      {
+        "source": "firebase-messaging-sw.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, no-cache"
+          }
+        ]
       }
     ]
   }

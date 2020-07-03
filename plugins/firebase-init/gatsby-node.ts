@@ -1,0 +1,1 @@
+export { onPostBootstrap } from './onPostBootstrap';
