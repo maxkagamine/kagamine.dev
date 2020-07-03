@@ -72,6 +72,14 @@ module.exports = {
       }
     },
 
+    // Compile service worker
+    {
+      resolve: 'service-worker',
+      options: {
+        entry: `${__dirname}/src/workers/firebase-messaging-sw.ts`
+      }
+    },
+
     // Set up image preprocessing
     'gatsby-transformer-sharp',
     {
