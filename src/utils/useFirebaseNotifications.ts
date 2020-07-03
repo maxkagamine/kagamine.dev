@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ManageNotificationsData } from '../../functions/src/types';
 
@@ -29,21 +29,20 @@ export function useFirebaseNotifications(topic: string): [NotificationsState, Su
   const TOKEN_KEY = `notifications.${topic}.token`;
 
   // Current notifications state for topic
-  let [state, setState] = useState<NotificationsState>(() => {
-    if (typeof window == 'undefined') { // SSR
-      return NotificationsState.Unsubscribed;
-    }
+  let [state, setState] = useState(NotificationsState.Unsubscribed);
+
+  // Initial state needs to be same as SSR as it won't rerender if not
+  useEffect(() => {
     if (!('Notification' in window)) {
-      return NotificationsState.NotSupported;
+      setState(NotificationsState.NotSupported);
+    } else if (Notification.permission == 'denied') {
+      setState(NotificationsState.PermissionDenied);
+    } else if (localStorage[TOKEN_KEY]) {
+      setState(NotificationsState.Subscribed);
+    } else {
+      setState(NotificationsState.Unsubscribed);
     }
-    if (Notification.permission == 'denied') {
-      return NotificationsState.PermissionDenied;
-    }
-    if (localStorage[TOKEN_KEY]) {
-      return NotificationsState.Subscribed;
-    }
-    return NotificationsState.Unsubscribed;
-  });
+  }, [setState, TOKEN_KEY]);
 
   const intl = useIntl();
 
