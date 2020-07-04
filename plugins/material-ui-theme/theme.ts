@@ -149,6 +149,9 @@ theme.overrides!.MuiCssBaseline = {
       maxWidth: '100%',
       height: 'auto'
     },
+    'p > img:only-child': {
+      display: 'block'
+    },
     code: {
       fontFamily: '"Roboto Mono", "Noto Sans JP", monospace',
       fontSize: 14 // Using rem here causes it to be 19.6923px for some reason
