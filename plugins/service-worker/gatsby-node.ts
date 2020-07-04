@@ -14,18 +14,16 @@ export const onPostBuild = async ({ reporter, parentSpan, store }: ParentSpanPlu
 
   let gatsbyConfig = store.getState().webpack;
   let config: Configuration = {
-    context: gatsbyConfig.context,
+    ...gatsbyConfig,
     entry: pluginOptions.entry,
     output: {
       path: path.join(gatsbyConfig.context, 'public'),
       filename: pluginOptions.output ?? basename.replace(/\.ts$/, '.js')
     },
-    module: gatsbyConfig.module,
-    performance: gatsbyConfig.performance,
+    target: 'web',
     mode: 'production',
-    optimization: {
-      minimizer: gatsbyConfig.optimization?.minimizer
-    }
+    optimization: undefined,
+    externals: undefined
   };
 
   await new Promise((resolve, reject) => {

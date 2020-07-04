@@ -1,5 +1,7 @@
 ///<reference lib="webworker" />
 import type { MessagePayload } from '@firebase/messaging/dist/interfaces/message-payload';
+import profileSrc from '../images/profile.png';
+import { toAbsoluteUrl } from '../utils/toAbsoluteUrl';
 declare const self: ServiceWorkerGlobalScope;
 
 /*
@@ -13,6 +15,8 @@ declare const self: ServiceWorkerGlobalScope;
   reader, we'll simply show the notification and open the link in a new tab when
   clicked. Firebase SDK isn't needed in this case.
 */
+
+const SITE_URL = 'https://kagamine.dev';
 
 self.addEventListener('push', (e: PushEvent) => e.waitUntil(onPush(e)));
 self.addEventListener('notificationclick', (e: NotificationEvent) => e.waitUntil(onNotificationClick(e)));
@@ -31,7 +35,16 @@ async function onPush(event: PushEvent) {
   }
 
   // Show notification
-  let { title, ...notificationOptions } = payload.notification;
+  let { title, ...rest } = payload.notification;
+  let notificationOptions: NotificationOptions = {
+    icon: toAbsoluteUrl(SITE_URL, profileSrc),
+    silent: true, // Not that important, and also may come at any time of day
+    ...rest,
+    data: {
+      ...(payload.data as any),
+      ...rest.data
+    }
+  };
   await self.registration.showNotification(title, notificationOptions);
 }
 
