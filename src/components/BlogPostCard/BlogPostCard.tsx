@@ -32,6 +32,11 @@ interface BlogPostCardProps {
    * despite the border to avoid creating two images for the user to download.
    */
   cover?: FluidObject;
+
+  /**
+   * The post's last updated date as an ISO 8601 string.
+   */
+  lastUpdated?: string;
 }
 
 const useStyles = makeStyles(theme => createStyles({
@@ -70,7 +75,7 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function BlogPostCard(props: BlogPostCardProps) {
-  const { slug, title, date, excerpt, cover } = props;
+  const { slug, title, date, excerpt, cover, lastUpdated } = props;
   const classes = useStyles(props);
 
   // Nested link causes visual glitch on page load as DOM gets confused
@@ -85,7 +90,7 @@ export function BlogPostCard(props: BlogPostCardProps) {
           <CardMedia component={Img} fluid={cover} aria-hidden='true' />
         )}
         <CardContent className={classes.content}>
-          <BlogPostTitle title={title} date={date} />
+          <BlogPostTitle title={title} date={date} lastUpdated={lastUpdated} />
           <div dangerouslySetInnerHTML={{ __html: excerptWithoutLinks }} className={classes.excerpt} />
           <ReadMoreButton />
         </CardContent>

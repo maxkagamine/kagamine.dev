@@ -36,6 +36,7 @@ export const query = graphql`
           relativePath
         }
       }
+      lastUpdated
     }
     site {
       siteMetadata {
@@ -90,7 +91,7 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export default function BlogPostPage({ data, location, pageContext: { alternateUrls } }: LocalizedPageProps<GatsbyTypes.BlogPostPageQuery>) {
-  const { html, excerptPlain, tableOfContents, cover } = data.markdownRemark!;
+  const { html, excerptPlain, tableOfContents, cover, lastUpdated } = data.markdownRemark!;
   const { title, date } = data.markdownRemark!.frontmatter!;
   const { relativePath } = data.markdownRemark!.parent! as Pick<GatsbyTypes.File, 'relativePath'>;
   const { repoUrl } = data.site!.siteMetadata!;
@@ -113,6 +114,7 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
         title,
         image: cover?.childImageSharp?.fluid?.src,
         datePublished: date!,
+        dateUpdated: lastUpdated,
         description: excerptPlain
       }}
     >
@@ -158,7 +160,7 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
               aria-hidden='true'
             />
           )}
-          <BlogPostTitle title={title!} date={date!} />
+          <BlogPostTitle title={title!} date={date!} lastUpdated={lastUpdated} />
           {tableOfContents && (
             <TableOfContents html={tableOfContents} className={classes.inlineToc} />
           )}

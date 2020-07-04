@@ -33,6 +33,7 @@ export const query = graphql`
             }
           }
           excerpt(format: HTML)
+          lastUpdated
         }
       }
     }
@@ -73,6 +74,7 @@ export default function HomePage({ data, location, pageContext: { alternateUrls 
           date={node.frontmatter!.date!}
           excerpt={node.excerpt!}
           cover={node.cover?.childImageSharp?.fluid}
+          lastUpdated={node.lastUpdated}
         />
       ))}
     </Layout>

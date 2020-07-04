@@ -22,5 +22,6 @@
   "jobTitle": "ソフトウェアエンジニア",
   "kagamineRin": "鏡音リン",
   "notFoundMessage": "リンちゃんはあのページを見つけられませんでした！",
-  "notFoundBackToHome": "トップへ戻りましょう？"
+  "notFoundBackToHome": "トップへ戻りましょう？",
+  "lastUpdated": "{timeAgo} 更新"
 }

@@ -183,6 +183,9 @@ module.exports = {
     // Add cover images to blog posts
     'cover-images',
 
+    // Use git log to show last updated date
+    'git-last-updated',
+
     // Client-side routing for <a> tags in markdown posts
     'gatsby-plugin-catch-links',
 

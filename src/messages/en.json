@@ -22,5 +22,6 @@
   "jobTitle": "Software Engineer",
   "kagamineRin": "Kagamine Rin",
   "notFoundMessage": "Rin-chan couldn't find that page!",
-  "notFoundBackToHome": "Back to homepage?"
+  "notFoundBackToHome": "Back to homepage?",
+  "lastUpdated": "Updated {timeAgo}"
 }
