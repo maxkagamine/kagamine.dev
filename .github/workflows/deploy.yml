@@ -20,3 +20,5 @@ jobs:
       - run: firebase deploy
         env:
           FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
+      - name: Send notifications
+        run: curl -sSf https://us-central1-kagamine-dev.cloudfunctions.net/sendNotifications

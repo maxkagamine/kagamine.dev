@@ -1,4 +1,7 @@
 {
+  "functions": {
+    "predeploy": "cp --parents public/*/feed.xml functions/lib"
+  },
   "hosting": {
     "public": "public",
     "cleanUrls": true,

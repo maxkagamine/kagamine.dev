@@ -1,5 +1,7 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import fs from 'fs-extra';
+import Parser from 'rss-parser';
 import { ManageNotificationsData } from './types';
 
 const LOCALES = ['en', 'ja'];
@@ -31,4 +33,43 @@ export const manageNotifications = functions.https.onCall(async ({ token, topic,
   } else {
     await admin.messaging().unsubscribeFromTopic(token, topic);
   }
+});
+
+/**
+ * Checks the site's rss feed and sends a notification for the latest entry if
+ * newer than the last that was seen.
+ */
+export const sendNotifications = functions.https.onRequest(async (req, res) => {
+  // Read each locale's rss feed, copied into lib by predeploy
+  let parser = new Parser();
+  for (let locale of LOCALES) {
+    let xml = await fs.readFile(`${__dirname}/public/${locale}/feed.xml`, 'utf8');
+    let feed = await parser.parseString(xml);
+
+    // Get last seen post's timestamp
+    let doc = admin.firestore().collection('notifications').doc(locale);
+    let lastSeen: number = (await doc.get()).data()?.lastSeen ?? 0;
+
+    // Check if latest entry is newer
+    let latest = feed.items?.[0];
+    let timestamp = latest?.pubDate ? new Date(latest.pubDate).getTime() : 0;
+    if (timestamp > lastSeen && latest?.title && latest?.link) {
+      // Update last seen
+      await doc.set({ lastSeen: timestamp });
+
+      // Send notification
+      await admin.messaging().send({
+        notification: {
+          title: latest.title
+        },
+        data: {
+          url: latest.link
+        },
+        topic: locale
+      });
+    }
+  }
+
+  // Whoop
+  res.status(200).end();
 });
