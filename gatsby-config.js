@@ -218,6 +218,7 @@ module.exports = {
                       title
                       date
                     }
+                    excerpt(format: PLAIN)
                   }
                 }
               }
@@ -232,6 +233,7 @@ module.exports = {
           serialize({ query: { site, allMarkdownRemark } }) {
             return allMarkdownRemark.edges.map(({ node }) => ({
               title: node.frontmatter.title,
+              description: node.excerpt,
               date: node.frontmatter.date,
               url: `${site.siteMetadata.siteUrl}${node.fields.slug}`
             }));

@@ -6,6 +6,9 @@ import { ManageNotificationsData } from './types';
 
 const LOCALES = ['en', 'ja'];
 
+const NOTIFICATION_BODY_MAX_LENGTH = 80;
+const NOTIFICATION_BODY_MAX_LENGTH_JA = 40;
+
 admin.initializeApp();
 
 /**
@@ -57,10 +60,19 @@ export const sendNotifications = functions.https.onRequest(async (req, res) => {
       // Update last seen
       await doc.set({ lastSeen: timestamp });
 
+      // Trim description
+      let body = latest.contentSnippet || undefined;
+      let maxLength = locale == 'ja' ?
+        NOTIFICATION_BODY_MAX_LENGTH_JA : NOTIFICATION_BODY_MAX_LENGTH;
+      if (body && body.length > maxLength) {
+        body = body.substr(0, maxLength - 1) + '…';
+      }
+
       // Send notification
       await admin.messaging().send({
         notification: {
-          title: latest.title
+          title: latest.title,
+          body
         },
         data: {
           url: latest.link
