@@ -63,12 +63,20 @@ const useStyles = makeStyles(theme => createStyles({
   },
   excerpt: {
     pointerEvents: 'none'
+  },
+  excerptLink: {
+    color: theme.palette.secondary.main
   }
 }));
 
 export function BlogPostCard(props: BlogPostCardProps) {
   const { slug, title, date, excerpt, cover } = props;
   const classes = useStyles(props);
+
+  // Nested link causes visual glitch on page load as DOM gets confused
+  let excerptWithoutLinks = excerpt
+    .replace(/<a /g, `<span class="${classes.excerptLink}" `)
+    .replace(/<\/a>/g, '</span>');
 
   return (
     <Card component='article' className={classes.root}>
@@ -78,7 +86,7 @@ export function BlogPostCard(props: BlogPostCardProps) {
         )}
         <CardContent className={classes.content}>
           <BlogPostTitle title={title} date={date} />
-          <div dangerouslySetInnerHTML={{ __html: excerpt }} className={classes.excerpt} />
+          <div dangerouslySetInnerHTML={{ __html: excerptWithoutLinks }} className={classes.excerpt} />
           <ReadMoreButton />
         </CardContent>
       </CardActionArea>
