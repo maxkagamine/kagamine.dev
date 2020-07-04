@@ -5,25 +5,24 @@ date: 2018-05-05T12:19-0400
 
 `git clean` is for milk drinkers; delete your changes like a true Nord!
 
+Yes, my terminal has sound effects.
+
 <!-- end -->
 
-**(Turn sound on.)**
+https://youtu.be/KMKklzGifok
 
-https://youtu.be/6uxOwzALvcc
-
-## Let me guess... someone stole your sweetroll?
-
-Come, come and see what goods I offer...
+The function:
 
 ```bash
 fus() {
-	if [[ $* =~ ^ro\ dah ]]; then
-		git nuke && sweetroll --sfx fusrodah
-	else
-		( cd "$(git rev-parse --show-toplevel)" && # git clean operates in current dir
-			git reset --hard && git clean -fd && sweetroll --sfx fus )
-	fi
-	sweetroll $?
+  # https://kagamine.dev/en/fus-ro-dah/
+  if [[ $* =~ ^ro\ dah ]]; then
+    git nuke && sweetroll --sfx fusrodah
+  else
+    ( cd "$(git rev-parse --show-toplevel)" && # git clean operates in current dir
+      git reset --hard && git clean -fd && sweetroll --sfx fus )
+  fi
+  sweetroll $?
 }
 ```
 
@@ -56,11 +55,9 @@ With --stat, increments the stat identified by <name> and plays the levelup
 sound effect on certain multiples. <name> must be a valid JSON property name.
 ```
 
-**[See the source on GitHub.](https://github.com/maxkagamine/dotfiles/blob/master/home/bin/sweetroll)** Sound effects [here](https://github.com/maxkagamine/dotfiles/tree/master/home/sfx).
+[See the source on GitHub.](https://github.com/maxkagamine/dotfiles/blob/master/home/bin/sweetroll) (The sound effects [can be found here](https://github.com/maxkagamine/dotfiles/tree/master/home/sfx).)
 
-The level up is accomplished using [this post-commit hook](https://github.com/maxkagamine/dotfiles/blob/master/home/git-hooks/post-commit.d/post-commit-sweetroll) which is set globally [using `core.hooksPath`](https://github.com/maxkagamine/dotfiles/blob/master/home/.gitconfig) with [this wrapper](https://github.com/maxkagamine/dotfiles/tree/master/home/git-hooks) to avoid overriding any repo-specific hooks.
-
-...
+The level up is accomplished using [this post-commit hook](https://github.com/maxkagamine/dotfiles/blob/e921fdf9bd5f316d7adc46c89d6d585175ecfd06/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33) which is set globally [using `core.hooksPath`](https://github.com/maxkagamine/dotfiles/blob/master/home/.gitconfig) with [this wrapper](https://github.com/maxkagamine/dotfiles/tree/master/home/git-hooks) to avoid overriding any repo-specific hooks.
 
 [No lollygaggin'.](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLRvds-tlTLAC3z5ZuXw5ZB_p6oJc9rjpC)
 
