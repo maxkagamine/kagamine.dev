@@ -117,7 +117,12 @@ module.exports = {
           'gatsby-remark-smartypants',
 
           // Add target & rel to external links
-          'gatsby-remark-external-links',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              rel: 'noopener noreferrer'
+            }
+          },
 
           // Add anchors to headers
           'gatsby-remark-autolink-headers',
