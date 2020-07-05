@@ -123,7 +123,7 @@ theme.overrides!.MuiCssBaseline = {
     },
     h2: {
       ...theme.typography.h2,
-      margin: theme.spacing(6, 0, 3),
+      margin: theme.spacing(5, 0, 3),
 
       // Short underline
       paddingBottom: theme.spacing(1) + 4 /* height */,
@@ -140,7 +140,7 @@ theme.overrides!.MuiCssBaseline = {
     },
     h3: {
       ...theme.typography.h3,
-      margin: theme.spacing(6, 0, 3)
+      margin: theme.spacing(5, 0, 3)
     },
     'p, pre, blockquote': {
       margin: theme.spacing(2, 0)
