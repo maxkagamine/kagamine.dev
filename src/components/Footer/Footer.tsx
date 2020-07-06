@@ -1,10 +1,10 @@
 import { Container, IconButton, Tooltip, Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { MusicIcon } from './MusicIcon';
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
@@ -73,7 +73,7 @@ export function Footer(props: {}) {
               size='small'
               className={classes.button}
             >
-              <MusicNoteIcon fontSize='inherit' />
+              <MusicIcon fontSize='inherit' />
             </IconButton>
           </span>
         </Tooltip>
