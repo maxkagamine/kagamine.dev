@@ -8,6 +8,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { LocalizedPageProps } from '../../plugins/localized-blog';
 import { BlogPostAfterword } from '../components/BlogPostAfterword';
+import { BlogPostCard } from '../components/BlogPostCard';
 import { BlogPostTitle } from '../components/BlogPostTitle';
 import { Layout } from '../components/Layout';
 import { AlignedIconButton, PageControls } from '../components/PageControls';
@@ -15,7 +16,7 @@ import { CopyLinkShareTarget, HackerNewsShareTarget, LineShareTarget, LinkedInSh
 import { TableOfContents } from '../components/TableOfContents';
 
 export const query = graphql`
-  query BlogPostPage($slug: String!) {
+  query BlogPostPage($slug: String!, $previous: String, $next: String) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
@@ -24,19 +25,19 @@ export const query = graphql`
       html
       excerptPlain: excerpt(format: PLAIN)
       tableOfContents
-      cover {
-        childImageSharp {
-          fluid(maxWidth: 772) { # md breakpoint minus gutters
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
+      ...BlogPostCover
       parent {
         ... on File {
           relativePath
         }
       }
       lastUpdated
+    }
+    previous: markdownRemark(fields: { slug: { eq: $previous } }) {
+      ...BlogPostCard
+    }
+    next: markdownRemark(fields: { slug: { eq: $next } }) {
+      ...BlogPostCard
     }
     site {
       siteMetadata {
@@ -87,6 +88,21 @@ const useStyles = makeStyles(theme => createStyles({
     position: 'sticky',
     top: theme.spacing(CONTAINER_SPACING),
     maxHeight: `calc(100vh - ${theme.spacing(CONTAINER_SPACING * 2)})`
+  },
+  prevNext: {
+    display: 'grid',
+    gridGap: theme.spacing(2),
+    marginTop: theme.spacing(3),
+    [theme.breakpoints.up('md')]: {
+      gridAutoColumns: '1fr',
+      gridAutoFlow: 'column',
+      alignItems: 'start'
+    }
+  },
+  card: {
+    '$prevNext & + &': {
+      marginTop: 0
+    }
   }
 }));
 
@@ -94,6 +110,7 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
   const { html, excerptPlain, tableOfContents, cover, lastUpdated } = data.markdownRemark!;
   const { title, date } = data.markdownRemark!.frontmatter!;
   const { relativePath } = data.markdownRemark!.parent! as Pick<GatsbyTypes.File, 'relativePath'>;
+  const { previous, next } = data;
   const { repoUrl } = data.site!.siteMetadata!;
   const classes = useStyles();
   const intl = useIntl();
@@ -168,6 +185,32 @@ export default function BlogPostPage({ data, location, pageContext: { alternateU
           <BlogPostAfterword editUrl={editUrl} issueUrl={issueUrl} />
         </article>
       </div>
+      {(previous || next) && (
+        <nav className={classes.prevNext} data-nosnippet>
+          {previous && (
+            <BlogPostCard
+              key={previous.fields!.slug!}
+              slug={previous.fields!.slug!}
+              title={previous.frontmatter!.title!}
+              date={previous.frontmatter!.date!}
+              cover={previous.cover?.childImageSharp?.fluid}
+              lastUpdated={previous.lastUpdated}
+              className={classes.card}
+            />
+          )}
+          {next && (
+            <BlogPostCard
+              key={next.fields!.slug!}
+              slug={next.fields!.slug!}
+              title={next.frontmatter!.title!}
+              date={next.frontmatter!.date!}
+              cover={next.cover?.childImageSharp?.fluid}
+              lastUpdated={next.lastUpdated}
+              className={classes.card}
+            />
+          )}
+        </nav>
+      )}
     </Layout>
   );
 }

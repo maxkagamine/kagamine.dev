@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import React from 'react';
@@ -25,7 +26,7 @@ interface BlogPostCardProps {
   /**
    * The excerpt html.
    */
-  excerpt: string;
+  excerpt?: string;
 
   /**
    * Optional cover image. Should use the same max width as blog post pages
@@ -37,6 +38,8 @@ interface BlogPostCardProps {
    * The post's last updated date as an ISO 8601 string.
    */
   lastUpdated?: string;
+
+  className?: string;
 }
 
 const useStyles = makeStyles(theme => createStyles({
@@ -75,23 +78,25 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 export function BlogPostCard(props: BlogPostCardProps) {
-  const { slug, title, date, excerpt, cover, lastUpdated } = props;
+  const { slug, title, date, excerpt, cover, lastUpdated, className } = props;
   const classes = useStyles(props);
 
   // Nested link causes visual glitch on page load as DOM gets confused
   let excerptWithoutLinks = excerpt
-    .replace(/<a /g, `<span class="${classes.excerptLink}" `)
-    .replace(/<\/a>/g, '</span>');
+    ?.replace(/<a /g, `<span class="${classes.excerptLink}" `)
+     .replace(/<\/a>/g, '</span>');
 
   return (
-    <Card component='article' className={classes.root}>
+    <Card component='article' className={clsx(classes.root, className)}>
       <CardActionArea component={Link} to={slug} role='link'>
         {cover && (
           <CardMedia component={Img} fluid={cover} aria-hidden='true' />
         )}
         <CardContent className={classes.content}>
           <BlogPostTitle title={title} date={date} lastUpdated={lastUpdated} />
-          <div dangerouslySetInnerHTML={{ __html: excerptWithoutLinks }} className={classes.excerpt} />
+          {excerptWithoutLinks && (
+            <div dangerouslySetInnerHTML={{ __html: excerptWithoutLinks }} className={classes.excerpt} />
+          )}
           <ReadMoreButton />
         </CardContent>
       </CardActionArea>

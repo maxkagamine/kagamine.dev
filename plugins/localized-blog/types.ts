@@ -30,9 +30,19 @@ export interface LocalizedPageContext {
   alternateUrls: Record<string, string>;
 
   /**
-   * The slug for use in the blog post template's page query.
+   * For blog posts, the slug for use in the page query.
    */
   slug?: string;
+
+  /**
+   * For blog posts, the slug of the previous (older) post.
+   */
+  previous?: string;
+
+  /**
+   * For blog posts, the slug of the next (newer) post.
+   */
+  next?: string;
 
   /**
    * The locale for use in page queries (use `intl.locale` otherwise). Undefined
@@ -43,7 +53,7 @@ export interface LocalizedPageContext {
 
 export interface InternalLocalizedPageContext extends LocalizedPageContext {
   locales?: string[]; // Used only for 404 page
-  messages: Messages | Record<string, Messages>;
+  messages: Messages | Record<string, Messages>; // Latter type only for 404 page
 }
 
 export interface LocalizedPageProps<

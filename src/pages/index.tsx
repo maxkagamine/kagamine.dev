@@ -18,22 +18,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date
-          }
-          cover {
-            childImageSharp {
-              fluid(maxWidth: 772) { # md breakpoint minus gutters
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-          excerpt(format: HTML)
-          lastUpdated
+          ...BlogPostCard_withExcerpt
         }
       }
     }
