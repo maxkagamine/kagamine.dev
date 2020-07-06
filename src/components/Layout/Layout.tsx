@@ -3,6 +3,7 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { WindowLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
+import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Metadata, PageMetadata } from '../Metadata';
 
@@ -61,6 +62,7 @@ export function Layout(props: LayoutProps) {
       <Container component='main' maxWidth='md' className={classes.main}>
         {children}
       </Container>
+      <Footer />
     </>
   );
 }
