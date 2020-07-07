@@ -34,6 +34,7 @@ export function Metadata(props: MetadataProps) {
 
   let name = intl.formatMessage({ id: 'name' });
   let title = metadata?.title ?? name;
+  let description = isHome ? intl.formatMessage({ id: 'description' }) : metadata?.description;
   let canonicalUrl = toAbsoluteUrl(siteUrl, alternateUrls[intl.locale]);
   let profileImageUrl = toAbsoluteUrl(siteUrl, profileSrc);
   let imageUrl = metadata?.image == null ? profileImageUrl : toAbsoluteUrl(siteUrl, metadata.image);
@@ -68,7 +69,7 @@ export function Metadata(props: MetadataProps) {
       dateModified: metadata.dateUpdated,
       image: imageUrl,
       inLanguage: intl.locale,
-      description: metadata.description,
+      description,
       author: selfSchema,
       publisher: selfSchema,
       mainEntityOfPage: {
@@ -82,8 +83,8 @@ export function Metadata(props: MetadataProps) {
     <Helmet htmlAttributes={{ lang: intl.locale }}>
       {/* Standard tags */}
       <title>{title}</title>
-      {metadata?.description && (
-        <meta name='description' content={metadata.description} />
+      {description && (
+        <meta name='description' content={description} />
       )}
       {/* Canonical & alternate urls */}
       <link rel='canonical' href={canonicalUrl} />
@@ -95,8 +96,8 @@ export function Metadata(props: MetadataProps) {
       <meta property='og:image' content={imageUrl} />
       <meta property='og:url' content={canonicalUrl} />
       <meta property='og:site_name' content={name} />
-      {metadata?.description && (
-        <meta property='og:description' content={metadata.description} />
+      {description && (
+        <meta property='og:description' content={description} />
       )}
       {/* Twitter */}
       <link rel='me' href='https://twitter.com/maxkagamine' />
