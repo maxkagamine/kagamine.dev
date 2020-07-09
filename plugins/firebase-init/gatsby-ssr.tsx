@@ -6,13 +6,14 @@ function script(key: string, js: string) {
   return <script key={key} dangerouslySetInnerHTML={{ __html: js.replace(/\s+/gm, ' ') }} />; // Poor man's minification
 }
 
-export const onRenderBody = ({ setHeadComponents }: RenderBodyArgs, pluginOptions: InitOptions) => {
+export const onRenderBody = ({ setHeadComponents, pathname }: RenderBodyArgs, pluginOptions: InitOptions) => {
   let { measurementId, domain } = pluginOptions;
   let head: React.ReactNode[] = [];
 
   // Set up analytics. Client-side routing is tracked when Enhanced Measurement
-  // is enabled: https://support.google.com/analytics/answer/9216061
-  if (process.env.NODE_ENV == 'production') {
+  // is enabled: https://support.google.com/analytics/answer/9216061. One might
+  // want to track 404s as well, but I'm ignoring them to avoid analytics spam.
+  if (process.env.NODE_ENV == 'production' && pathname != '/404.html') {
     head.push(<script key='init-ga-lib' async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>);
     head.push(script('init-ga', `
       window.dataLayer = window.dataLayer || [];
