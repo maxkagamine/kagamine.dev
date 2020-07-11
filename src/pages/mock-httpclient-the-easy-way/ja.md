@@ -4,7 +4,7 @@ date: 2018-12-02T17:59-0400
 slug: httpclient-mock-kantan-na-houhou
 ---
 
-HttpClientを直にモックすることが難しいのは[よく知られている](https://github.com/dotnet/corefx/issues/1624)。一般の解決法は何かのラッパーを作って代わりにそれをモックすること（コードを乱雑しても）またはHttpClient固有のテスティングライブラリを使うこと（しかしHTTP呼び出しのために別のモックシステムに切り替える必要があるし他のモックとうまく合わないかも）
+HttpClientを直接モックするのは難しいことは[よく知られている](https://github.com/dotnet/corefx/issues/1624)。一般の解決法は何かのラッパーを作って代わりにそれをモックすること（コードを乱雑しても）またはHttpClient固有のテスティングライブラリを使うこと（しかしHTTP呼び出しのために別のモックシステムに切り替える必要があるし他のモックとうまく合わないかも）
 
 この投稿で私はHttpClientにもMoqを使用する方法を示しています。拡張メソッドの助けではHTTPリクエストをモックすることがサービスメソッドをモックするように簡単になれます
 
@@ -71,7 +71,7 @@ handler.SetupRequest(HttpMethod.Get, $"{BaseUrl}/api/stuff")
 - リクエストのヘルパー： **SetupRequest**、**SetupRequestSequence**、**VerifyRequest** （と相当のAnyRequest）
 - レスポンスのヘルパー： **ReturnsResponse**（StringContent、ByteArrayContent、StreamContent、またはステータスコードだけを送ることを簡単にするいろいろのオーバーロードがある）
 
-リクエストのヘルパーはすべて同じオーバーロードがある。任意のHTTPメソッド、URLかUri、述語を受け取る。述語は正確なURLではなく、URLの部分とかヘッダーとかJSONの本体とかでリクエストをマッチできる：
+リクエストのヘルパーはすべて同じオーバーロードがある。任意のHTTPメソッド、URLかUri、述語を受け取る。述語は正確なURLではなく、クエリパラメータやヘッダーやJSONの本体でリクエストをマッチできる：
 
 ```csharp
 handler
