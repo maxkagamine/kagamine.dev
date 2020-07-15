@@ -84,7 +84,7 @@ handler
     .ReturnsResponse(HttpStatusCode.Created);
 ```
 
-`SetupRequest()` also [works with `InSequence()`](https://github.com/maxkagamine/Moq.Contrib.HttpClient/blob/master/test/Moq.Contrib.HttpClient.Test/SequenceExtensionsTests.cs) which sets up a chain of calls that must be made in order (although this usually isn't necesasry). The way this is implemented is a bit interesting: at time of writing, Moq doesn't actually support both `InSequence()` and `Protected()` together; it's made possible here by [rewriting the expression tree](https://github.com/maxkagamine/Moq.Contrib.HttpClient/blob/master/src/Moq.Contrib.HttpClient/MockHttpMessageHandlerExtensions.cs#L96-L148) to call the protected method, similar to what ProtectedAsMock does internally.
+`SetupRequest()` also [works with `InSequence()`](https://github.com/maxkagamine/Moq.Contrib.HttpClient/blob/master/test/Moq.Contrib.HttpClient.Test/SequenceExtensionsTests.cs) which sets up a chain of calls that must be made in order (although this usually isn't necessary). The way this is implemented is a bit interesting: at time of writing, Moq doesn't actually support both `InSequence()` and `Protected()` together; it's made possible here by [rewriting the expression tree](https://github.com/maxkagamine/Moq.Contrib.HttpClient/blob/master/src/Moq.Contrib.HttpClient/MockHttpMessageHandlerExtensions.cs#L96-L148) to call the protected method, similar to what ProtectedAsMock does internally.
 
 Grab it [on NuGet](https://www.nuget.org/packages/Moq.Contrib.HttpClient/) and check out [the readme on GitHub](https://github.com/maxkagamine/Moq.Contrib.HttpClient) for more detailed usage. The unit tests in particular are worth looking at to get a feel for how it works in practice.
 

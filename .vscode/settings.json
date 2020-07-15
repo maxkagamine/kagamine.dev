@@ -2,5 +2,30 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.organizeImports": true
-  }
+  },
+  "cSpell.enabledLanguageIds": ["markdown"],
+  "cSpell.languageSettings": [
+    {
+      "languageId": "markdown",
+      "ignoreRegExpList": ["/`.*?`/", "/```[\\s\\S]+?```/"]
+    }
+  ],
+  "cSpell.ignorePaths": [
+    "**/ja.md"
+  ],
+  "cSpell.words": [
+    "git's",
+    "gitignores",
+    "lollygaggin",
+    "Moq's",
+    "Nord",
+    "Overwatch",
+    "Quickstart",
+    "repos",
+    "subshell",
+    "sweetrolls",
+    "unstage",
+    "unstaged",
+    "untracked"
+  ]
 }
