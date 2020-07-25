@@ -1,6 +1,14 @@
-# kagamine.dev&ensp;[![CI build](https://github.com/maxkagamine/kagamine.dev/workflows/CI%20build/badge.svg)](.github/workflows/deploy.yml)
+# kagamine.dev&ensp;[![CI build][ci build badge]][ci build] [![Retweet][retweet button]][retweet] [![Follow][follow button]][follow]
 
-[![Built with Gatsby, React, TypeScript, Firebase](https://github.com/maxkagamine/kagamine.dev/blob/4ed2540eef34076504d1665f2c5a836cb3c1a646/screenshot-promo-image.png)](https://kagamine.dev)
+[ci build]: https://github.com/maxkagamine/kagamine.dev/actions?query=workflow%3A%22CI+build%22
+[retweet]: https://twitter.com/intent/retweet?tweet_id=1280865414151462923&related=maxkagamine
+[follow]: https://twitter.com/intent/follow?screen_name=maxkagamine
+
+[ci build badge]: https://github.com/maxkagamine/kagamine.dev/workflows/CI%20build/badge.svg
+[retweet button]: https://img.shields.io/badge/Retweet--1da1f2?style=social&logo=data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pg0KPHN2ZyB2aWV3Qm94PSIwIDAgMzAgMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBmaWxsPSIjMWRhMWYyIiBkPSJNMjAgMjMuNWMwIDAuMjY2LTAuMjM0IDAuNS0wLjUgMC41aC0xNWMtMC41NzggMC0wLjUtMC42MDktMC41LTF2LTloLTNjLTAuNTQ3IDAtMS0wLjQ1My0xLTEgMC0wLjIzNCAwLjA3OC0wLjQ2OSAwLjIzNC0wLjY0MWw1LTZjMC4xODctMC4yMTkgMC40NjktMC4zNDQgMC43NjYtMC4zNDRzMC41NzggMC4xMjUgMC43NjYgMC4zNDRsNSA2YzAuMTU2IDAuMTcyIDAuMjM0IDAuNDA2IDAuMjM0IDAuNjQxIDAgMC41NDctMC40NTMgMS0xIDFoLTN2Nmg5YzAuMTQxIDAgMC4yOTcgMC4wNjMgMC4zOTEgMC4xNzJsMi41IDNjMC4wNjMgMC4wOTQgMC4xMDkgMC4yMTkgMC4xMDkgMC4zMjh6TTMwIDE3YzAgMC4yMzQtMC4wNzggMC40NjktMC4yMzQgMC42NDFsLTUgNmMtMC4xODcgMC4yMTktMC40NjkgMC4zNTktMC43NjYgMC4zNTlzLTAuNTc4LTAuMTQxLTAuNzY2LTAuMzU5bC01LTZjLTAuMTU2LTAuMTcyLTAuMjM0LTAuNDA2LTAuMjM0LTAuNjQxIDAtMC41NDcgMC40NTMtMSAxLTFoM3YtNmgtOWMtMC4xNDEgMC0wLjI5Ny0wLjA2My0wLjM5MS0wLjE4N2wtMi41LTNjLTAuMDYzLTAuMDc4LTAuMTA5LTAuMjAzLTAuMTA5LTAuMzEzIDAtMC4yNjYgMC4yMzQtMC41IDAuNS0wLjVoMTVjMC41NzggMCAwLjUgMC42MDkgMC41IDF2OWgzYzAuNTQ3IDAgMSAwLjQ1MyAxIDF6Ij48L3BhdGg+DQo8L3N2Zz4=
+[follow button]: https://img.shields.io/twitter/follow/maxkagamine?style=social
+
+[![Built with Gatsby, React, TypeScript, and Firebase](https://github.com/maxkagamine/kagamine.dev/blob/4ed2540eef34076504d1665f2c5a836cb3c1a646/screenshot-promo-image.png)](https://kagamine.dev)
 
 ## Features
 
