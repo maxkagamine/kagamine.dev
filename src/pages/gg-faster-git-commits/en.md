@@ -213,7 +213,7 @@ Lastly, commit all the staged changes, [passing](http://wiki.bash-hackers.org/sy
 
 And that concludes my favorite bash function,
 
-**[GG.](https://www.youtube.com/watch?v=dMfnnt6NuBw&list=PLRvds-tlTLABjrv_Q93zvD65TFUbgqOk7)**
+**[GG.](https://www.youtube.com/watch?v=dMfnnt6NuBw&list=PLYooEAFUfhDcA8Zd1__l3tr4IZucjF2Fw)**
 
 https://giphy.com/gifs/overwatch-gg-dva-MBrmR7OrVNUVhsHt1R
 

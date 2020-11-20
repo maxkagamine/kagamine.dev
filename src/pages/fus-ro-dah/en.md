@@ -59,6 +59,6 @@ sound effect on certain multiples. <name> must be a valid JSON property name.
 
 The level up is accomplished using [this post-commit hook](https://github.com/maxkagamine/dotfiles/blob/e921fdf9bd5f316d7adc46c89d6d585175ecfd06/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33) which is set globally [using `core.hooksPath`](https://github.com/maxkagamine/dotfiles/blob/master/home/.gitconfig) with [this wrapper](https://github.com/maxkagamine/dotfiles/tree/master/home/git-hooks) to avoid overriding any repo-specific hooks.
 
-[No lollygaggin'.](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLRvds-tlTLAC3z5ZuXw5ZB_p6oJc9rjpC)
+[No lollygaggin'.](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLYooEAFUfhDfO3m_WQWkHdIB3Zh2kIXKp)
 
 https://giphy.com/gifs/dance-skyrim-brodual-TdFN7Cys1G8mOTuwfg

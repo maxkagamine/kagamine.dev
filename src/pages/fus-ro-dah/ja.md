@@ -61,6 +61,6 @@ JSONプロパティ名になる必要がある。
 
 そのレベルアップは[`core.hooksPath`を使って](https://github.com/maxkagamine/dotfiles/blob/master/home/.gitconfig)グローバルで設定される[このpost-commitフック](https://github.com/maxkagamine/dotfiles/blob/e921fdf9bd5f316d7adc46c89d6d585175ecfd06/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33)で成し遂げられました。リポジトリのフックを無効にすることを避けるために[このラッパースクリプト](https://github.com/maxkagamine/dotfiles/tree/master/home/git-hooks)が使われている。
 
-[誰かにスイートロールを盗まれたかな？](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLRvds-tlTLAC3z5ZuXw5ZB_p6oJc9rjpC)
+[誰かにスイートロールを盗まれたかな？](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLYooEAFUfhDfO3m_WQWkHdIB3Zh2kIXKp)
 
 https://giphy.com/gifs/dance-skyrim-brodual-TdFN7Cys1G8mOTuwfg
