@@ -46,7 +46,8 @@ Usage: sweetroll [exit code]
 Without options, prints a random quote appropriate for the exit code (if any).
 Sweetroll exits with whatever exit code is given.
 
-With --sfx, plays the specified mp3 from ~/sfx. Available sounds:
+With --sfx, plays the specified mp3 from ~/.local/share/sweetroll.
+Available sounds:
   fus
   fusrodah
   levelup
@@ -55,9 +56,9 @@ With --stat, increments the stat identified by <name> and plays the levelup
 sound effect on certain multiples. <name> must be a valid JSON property name.
 ```
 
-[See the source on GitHub.](https://github.com/maxkagamine/dotfiles/blob/master/home/bin/sweetroll) (The sound effects [can be found here](https://github.com/maxkagamine/dotfiles/tree/master/home/sfx).)
+[See the source on GitHub.](https://github.com/maxkagamine/dotfiles/blob/master/mods/git/.local/bin/sweetroll) (The sound effects [can be found here](https://github.com/maxkagamine/dotfiles/tree/master/mods/git/.local/share/sweetroll).)
 
-The level up is accomplished using [this post-commit hook](https://github.com/maxkagamine/dotfiles/blob/e921fdf9bd5f316d7adc46c89d6d585175ecfd06/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33) which is set globally [using `core.hooksPath`](https://github.com/maxkagamine/dotfiles/blob/master/home/.gitconfig) with [this wrapper](https://github.com/maxkagamine/dotfiles/tree/master/home/git-hooks) to avoid overriding any repo-specific hooks.
+The level up is accomplished using [this post-commit hook](https://github.com/maxkagamine/dotfiles/blob/old/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33) which is set globally [using `core.hooksPath`](https://github.com/maxkagamine/dotfiles/blob/old/home/.gitconfig#L7).
 
 [No lollygaggin'.](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLYooEAFUfhDfO3m_WQWkHdIB3Zh2kIXKp)
 

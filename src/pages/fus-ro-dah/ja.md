@@ -46,7 +46,7 @@ fus() {
 オプションが使わないと、ランダムで終了コードにふさわしい引用を出力する。
 スイートロールは渡された終了コードで終了する。
 
---sfxオプションを使うと、指定された~/sfxのmp3を再生する。
+--sfxオプションを使うと、指定された~/.local/share/sweetrollのmp3を再生する。
 入手可能なサウンドは：
   fus
   fusrodah
@@ -57,9 +57,9 @@ fus() {
 JSONプロパティ名になる必要がある。
 ```
 
-[GitHubでソースを見て](https://github.com/maxkagamine/dotfiles/blob/master/home/bin/sweetroll)。（サウンドエフェクトは[こちらです](https://github.com/maxkagamine/dotfiles/tree/master/home/sfx)）
+[GitHubでソースを見て](https://github.com/maxkagamine/dotfiles/blob/master/mods/git/.local/bin/sweetroll)。（サウンドエフェクトは[こちらです](https://github.com/maxkagamine/dotfiles/tree/master/mods/git/.local/share/sweetroll)）
 
-そのレベルアップは[`core.hooksPath`を使って](https://github.com/maxkagamine/dotfiles/blob/master/home/.gitconfig)グローバルで設定される[このpost-commitフック](https://github.com/maxkagamine/dotfiles/blob/e921fdf9bd5f316d7adc46c89d6d585175ecfd06/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33)で成し遂げられました。リポジトリのフックを無効にすることを避けるために[このラッパースクリプト](https://github.com/maxkagamine/dotfiles/tree/master/home/git-hooks)が使われている。
+そのレベルアップは[`core.hooksPath`を使って](https://github.com/maxkagamine/dotfiles/blob/old/home/.gitconfig#L7)グローバルで設定される[このpost-commitフック](https://github.com/maxkagamine/dotfiles/blob/old/home/git-hooks/post-commit.d/post-commit-sign-sweetroll#L24-L33)で成し遂げられました。
 
 [誰かにスイートロールを盗まれたかな？](https://www.youtube.com/watch?v=3dbE4v-u0mY&list=PLYooEAFUfhDfO3m_WQWkHdIB3Zh2kIXKp)
 
