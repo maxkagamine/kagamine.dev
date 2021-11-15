@@ -1,6 +1,7 @@
 {
   "functions": {
-    "predeploy": "cp --parents public/*/feed.xml functions/lib"
+    "predeploy": "cp --parents public/*/feed.xml functions/lib",
+    "source": "functions"
   },
   "hosting": {
     "public": "public",
